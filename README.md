@@ -1,8 +1,8 @@
 My groupmembers are:
-- Abdullah
+- Abdullah Humayun
 - Annika
 - Akash
-- XXXX
+- Jin
 
 
 ------------------ Fill in some information about your project under this ------------------
