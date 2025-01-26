@@ -1,7 +1,7 @@
 My groupmembers are:
-- XXXX
-- XXXX
-- XXXX
+- Ryan Maazous
+- Thomas Marshall
+- Jonah Minkoff
 - XXXX
 
 
