@@ -6,3 +6,4 @@ My groupmembers are:
 
 
 ------------------ Fill in some information about your project under this ------------------
+Our group has decided to work on the Mental Health Support App.
