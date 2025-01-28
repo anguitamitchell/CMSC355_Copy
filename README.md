@@ -1,8 +1,9 @@
-My groupmembers are:
+The groupmembers are:
 - Ryan Maazous
 - Thomas Marshall
 - Jonah Minkoff
-- XXXX
+- Brady Miller
+- Sebastian Alcibar
 
 
 ------------------ Fill in some information about your project under this ------------------
