@@ -1,0 +1,79 @@
+---
+title: "AI Applied to Software Design"
+authors: 
+  - name: "Alexia Jennings, Jenan Qasem, Sanskriti Gyawali, Diwashna Poudel, Arushi Chaturvedi"
+
+date: 2025-03-15
+date-format: "MMMM D, YYYY"
+  
+header-includes: |
+  \usepackage{titling}
+  \pretitle{\begin{center}\Large\bfseries}
+  \posttitle{\par\end{center}}
+  \preauthor{\begin{center}\large}
+  \postauthor{\par\end{center}}
+  \predate{\begin{center}\large}
+  \postdate{\par\end{center}}
+  \newpage
+
+format: pdf
+mainfont: "Times New Roman"
+fontsize: 12pt
+geometry: margin=1in
+---
+
+\newpage
+\tableofcontents
+\newpage
+
+<!-- Content of Paper -->
+# Introduction 
+|          Artificial intelligence (AI) is changing the way software is designed, making it faster, more efficient, and smarter. In the past, software design relied heavily on human expertise and strict rules. But with AI, we now have more flexible and adaptive solutions. AI helps developers by assisting with writing code, detecting bugs, optimizing performance, and improving user experience. As AI continues to improve, it’s becoming an essential tool for developers, making the design process faster and more predictable. AI in software development is based on several key ideas that help improve different parts of the process. The most important one is machine learning (ML). ML allows systems to learn from data and get better over time without needing to be programmed for every step. Tools like GitHub Copilot and Tabnine use machine learning to suggest code while developers work, and tools like DeepCode and CodeQL scan code to find bugs and security issues. Machine learning can also optimize performance by identifying bottlenecks and suggesting improvements.
+
+|          Another important AI concept is natural language processing (NLP). NLP helps AI understand and generate human language. It can be used for tasks like creating automated documentation, analyzing requirements, and even explaining code. AI tools using NLP, like chatbots or virtual assistants, can help developers find the right information or solve problems quickly. Generative AI, such as OpenAI Codex, is also changing how code is written. Developers can now give simple instructions to AI, and it will generate functional code snippets with little effort. AI can also find outdated parts of the code and suggest better ways to write it.
+
+# State-of-the-Art Methods
+|          Through automation, accuracy, and overall refinements, Artificial Intelligence has fundamentally altered the domain of software engineering. AI-powered tools which increase efficacy, dependability, and productivity are now accessible to software developers. Efforts in developing software technologies have and will continue to introduce new approaches that facilitate software design, verification, and sustenance. This part is devoted to outlining new advances, important milestones, and prospects of AI application in software engineering.
+
+|          Coding is made simpler with AI-powered tools due to their intelligent prompts and features that readily provide auto-suggestions. These tools are based on multi-lingual large scale models trained on a wide variety of programming languages making them easier to use for developers. GitHub Copilot integrated with OpenAI's Codex suggests the next lines or blocks of code to be written depending on what was coded before. These tools greatly alleviate human effort and reduce the time it takes to complete a project because of automatic code generation and reduction of tedious syntactic errors. Advanced AI models like OpenAI's GPT-4 and Gemini are changing software engineering by offering more than the already repetitive and simple auto-complete. These models take it a step forward by employing the use of multi-featured tools to develop complex codes, all the way to the software's design. There are some studies looking into combining reinforcement learning with generative AI for tools that will let users program better.
+
+# New Developments in AI Software Engineering
+|          Conventional methods of software testing can be resource-consuming, but AI technology automates the most important processes such as generating test cases, executing them, and detecting failures. Examples include, AI-Powered Mutation Testing – An AI changes the code and tests it to check how robust it is and find out the weak spots. Automated Bug Fixing – An AI tool reviews historical bugs and offers solutions. For instance, Facebook’s SapFix offers bug patching without human intervention. AI-Powered Unit Testing – Services like Diffblue Cover automatically write test cases and do not need users to provide any input. AI removes humans from the testing and debugging process which reduces errors, fosters a quick turnaround on releases, and improves quality.
+
+|          AI enhances DevOps by improving processes, anticipating failures, and automating sophisticated deployment tasks within the workflow. Predictive Analytics for CI/CD: AI predicts failures of certain steps in deployment pipelines and records them before they happen.  Intelligent Monitoring – AIOps systems automatically check system logs for suspicious activities and streamline identified system performance threats. Automated Integration of Program Code – An AI with intelligence finds and solves potential contradictory blocks to integration before it takes place. With AI introduction to DevOPs, companies are enabled to deliver software faster and manage the integrity of the system at the same time.
+
+# Comparison of Different Techniques & Real-World Applications
+|          One of the most impactful AI-driven techniques is automated code generation, which simplifies the development process by assisting engineers in writing code more efficiently. Tools such as GitHub Copilot and Tabnine use machine learning to suggest code snippets, autocomplete functions, and even generate entire blocks of code based on natural language input. This significantly reduces the manual effort required for coding and allows developers to focus on higher-level problem-solving. JPMorgan Chase, for example, has integrated AI-driven code assistants into its development workflow, reporting a 10–20% increase in software development efficiency. By automating repetitive coding tasks, the company has been able to accelerate project timelines while maintaining code quality. However, while these tools improve productivity, they are not foolproof and often require human oversight to ensure the correctness and security of the generated code.
+
+|          AI also plays a crucial role in predictive maintenance, an approach that leverages machine learning to anticipate software failures before they occur. Unlike traditional reactive maintenance—where issues are addressed only after they arise—AI-driven predictive models analyze historical performance data to detect patterns indicating potential malfunctions. For instance, Siemens has integrated AI into its software monitoring systems to track real-time application health and alert developers to potential risks. This reduces unexpected downtime and ensures smoother system operation.
+
+|          Beyond software development and maintenance, AI is transforming decision-making processes within software engineering. AI-powered analytics tools help project managers determine the best development strategies by analyzing historical project data, estimating timelines, and predicting risks. IBM Watson, for example, is used in software project management to assess past performance and provide data-driven recommendations. This allows companies to make more informed decisions regarding resource allocation, budget planning, and project scheduling.
+
+# Conclusion
+|          AI-driven techniques are reshaping software engineering by enhancing efficiency, reducing errors, and optimizing decision-making processes. Automated code generation speeds up development, intelligent debugging minimizes software defects, predictive maintenance prevents failures, and AI-powered analytics support better project management. While these advancements improve software engineering practices, they are not without limitations—human oversight remains essential to ensure accuracy and reliability. As AI continues to evolve, its role in software engineering will expand, driving innovation and efficiency across the industry.
+
+\newpage
+
+<!-- Citations -->
+# Works Cited
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+\setlength{\parskip}{12pt}
+\noindent
+
+Boulton, Clint. “How AI Is Transforming Software Development.” 
+Forbes, \url{https://www.forbes.com/sites/delltechnologies/2024/09/18/how-ai-is-transforming-software-development/.} 
+
+“Enhance Code Quality with Automated Docstring Generation.” \url{https://zencoder.ai/blog/enhancing-code-quality-automated-docstring-generation.} 
+
+“From Code Generation to Bug Detection: The AI Tools Every Developer Should Know (And How to Stay Secure)”. 12 Sept. 2024, \url{https://www.securityjourney.com/post/from-code-generation-to-bug-detection-the-ai-tools-every-developer-should-know-and-how-to-stay-secure.}
+
+Pradel, Michael, and Koushik Sen. “DeepBugs: A Learning Approach to Name-Based Bug Detection.” Proceedings of the ACM on Programming Languages, vol. 2, no. OOPSLA, Oct. 2018, pp. 1–25. DOI.org (Crossref), \url{https://doi.org/10.1145/3276517.}
+
+Stevens, Brett and Geoff Stevens. “AI Is Not a Panacea for Software Development.” TechCrunch, 30 June 2023, \url{https://techcrunch.com/2023/06/30/ai-is-not-a-panacea-for-software-development/.}
+
+Suresh, Haripriya. “JPMorgan Engineers’ Efficiency Jumps as Much as 20% from Using Coding Assistant.” Reuters, 14 Mar. 2025. www.reuters.com, \url{https://www.reuters.com/technology/artificial-intelligence/jpmorgan-engineers-efficiency-jumps-much-20-using-coding-assistant-2025-03-13/.}
+
+Vinuesa, Ricardo, et al. “The Role of Artificial Intelligence in Achieving the Sustainable Development Goals.” Nature Communications, vol. 11, no. 1, Jan. 2020, p. 233. www.nature.com, \url{https://doi.org/10.1038/s41467-019-14108-y.}
+
+Wang, Lei. AI in Software Engineering: Case Studies and Prospects. arXiv:2309.15768, arXiv, 27 Sept. 2023. arXiv.org, \url{https://doi.org/10.48550/arXiv.2309.15768.}
