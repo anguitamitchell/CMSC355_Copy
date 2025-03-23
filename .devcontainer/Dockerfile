@@ -1,22 +1,17 @@
-# Use a Python 3.10 base image (Debian-based)
-FROM python:3.10-bullseye
+FROM python:3.10-slim
 
-# Set the working directory inside the container
-WORKDIR /app
+# Set the working directory to the 'backend' folder where app.py and requirements.txt are located
+WORKDIR /app/backend
 
-# Install Node.js and npm (latest LTS) from NodeSource
-RUN apt-get update && apt-get install -y curl && \
-    curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
-    apt-get install -y nodejs
+# Install Python dependencies from requirements.txt
+COPY Sprint\ 1/AI\ Fitness\ Project/backend/requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Install additional dependencies (if needed)
-RUN apt-get install -y git
+# Copy the rest of the backend code
+COPY Sprint\ 1/AI\ Fitness\ Project/backend/ ./
 
-# Copy the application files into the container
-COPY . .
+# Expose port 5000 (common port for Flask apps)
+EXPOSE 5000
 
-# Expose necessary ports (adjust if needed)
-EXPOSE 5000 3000  
-
-# Set the default command (adjust based on your project setup)
-CMD ["bash"]
+# Command to run the app
+CMD ["python", "app.py"]
