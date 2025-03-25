@@ -1,20 +1,20 @@
-from flask import Flask, render_template
-from dotenv import load_dotenv
+from flask import Flask, render_template, session
 import os
 from backend.db import db
 from backend.tables import User
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
 from flask import Flask, render_template, redirect, url_for, flash
 from flask_bcrypt import Bcrypt
-from backend.forms import RegisterForm, LoginForm
+from backend.forms import RegisterForm, LoginForm, SurveyForm, FitnessLogWorkoutForm, FitnessLogCardioForm
+from backend.tables import User
+import secrets
 
 app = Flask(__name__)
-load_dotenv()
 bcrypt = Bcrypt(app)
 
 # Handles our SQLite database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY')
+app.config['SECRET_KEY'] = secrets.token_hex(16)
 db.init_app(app)
 
 # Handles login verification
@@ -30,13 +30,21 @@ def load_user(user_id):
 @app.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
-    return render_template('index.html', first_name=current_user.first_name)
+    fitness_goals= current_user.fitness_goals
+
+    if fitness_goals:
+        fitness_goals_list = fitness_goals.split(",")
+    else:
+        fitness_goals_list = None
+    return render_template('index.html', first_name=current_user.first_name, fitness_goals=fitness_goals_list)
 
 
 # Renders fitness log page
-@app.route('/fitness-log')
+@app.route('/fitness-log', methods=['GET', 'POST'])
 def fitness_log():
-    return render_template('fitness-log.html')
+    workout_form = FitnessLogWorkoutForm()
+    cardio_form = FitnessLogCardioForm()
+    return render_template('fitness-log.html', workout_form=workout_form, cardio_form=cardio_form)
 
 # Renders about page
 @app.route('/about')
@@ -72,18 +80,32 @@ def logout():
 def register():
     form = RegisterForm()
 
+
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data)
         new_user = User(username=form.username.data, password=hashed_password, first_name=form.first_name.data, last_name=form.last_name.data)
         db.session.add(new_user)
         db.session.commit()
-        return redirect(url_for('login'))
+        login_user(new_user)
+        return redirect(url_for('survey'))
 
     return render_template('register.html', form=form)
 
+@app.route('/survey', methods=['GET', 'POST'])
+def survey():
+    form = SurveyForm()
 
- 
+    if form.validate_on_submit():
+        selected_goals = ",".join(form.fitness_goals.data)
+        current_user.fitness_goals = selected_goals
+        db.session.commit()
+        return redirect(url_for('home'))
+    
+    return render_template('survey.html', form=form)
+
+with app.app_context():
+    db.create_all()  
+
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()  
+
     app.run(debug=True, host="0.0.0.0", port=5000)

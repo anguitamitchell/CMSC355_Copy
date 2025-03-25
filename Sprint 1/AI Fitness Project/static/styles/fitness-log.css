@@ -1,0 +1,26 @@
+.forms-wrapper {
+    display: flex;
+    gap: 20px; 
+    justify-content: space-between;
+}
+
+.workout-form, .cardio-form {
+    width: 48%; 
+    padding-left: 10px;
+}
+
+#workout-form, #cardio-form {
+    display: none;
+}
+
+button {
+    margin-bottom: 15px;
+}
+
+label {
+    margin-left: 10px;
+}
+
+#submit-button {
+    padding-top: 20px;
+}

@@ -7,6 +7,19 @@
 </head>
 <body>
     {% include 'navbar.html' %}
-    <h1>Welcome, {{ first_name|capitalize }}!</h1>
+    <h1 style="padding-bottom: 10px;">Welcome, {{ first_name|capitalize }}!</h1>
+    <h2 style="padding-bottom: 10px;">Your Fitness Goals:</h2>
+    <ul>
+        {% if fitness_goals %}
+            {% for goal in fitness_goals %}
+               
+                <li style="padding-left: 20px;">
+                    {{ goal }}
+                </li>
+            {% endfor %}
+        {% else %}
+            <p>No fitness goals set.</p>
+        {% endif %}
+    </ul>
 </body>
 </html>
