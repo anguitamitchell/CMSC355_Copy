@@ -1,9 +1,9 @@
 The groupmembers are:
+- Sebastian Alcibar
 - Ryan Maazous
 - Thomas Marshall
 - Jonah Minkoff
 - Brady Miller
-- Sebastian Alcibar
 
 
 ------------------ Fill in some information about your project under this ------------------
