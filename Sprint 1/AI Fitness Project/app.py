@@ -9,6 +9,7 @@ from backend.forms import RegisterForm, LoginForm, SurveyForm, FitnessLogWorkout
 from backend.tables import User
 import secrets
 
+
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 

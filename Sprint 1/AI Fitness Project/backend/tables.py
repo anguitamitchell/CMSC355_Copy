@@ -10,7 +10,6 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(20), nullable=False)
     fitness_goals = db.Column(db.String(255), nullable=True)
 
-class FitnessLogWorkout(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+
     
 
