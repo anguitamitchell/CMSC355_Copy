@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, SelectMultipleField, widgets, IntegerField, FieldList, FormField, DecimalField
+from wtforms import StringField, PasswordField, SubmitField, SelectMultipleField, widgets, IntegerField, FieldList, FormField, DecimalField, TimeField
 from wtforms.validators import InputRequired, Length, ValidationError, DataRequired, NumberRange
 from backend.tables import User
+from datetime import time
 
 # Sets up the form on the register page
 class RegisterForm(FlaskForm):
@@ -47,24 +48,19 @@ class SurveyForm(FlaskForm):
 
 
 class FitnessLogWorkoutForm(FlaskForm):
-    legs_reps = IntegerField('Total Reps', default=0, validators=[NumberRange(min=0, message="Value must be 0 or greater")])
-    legs_sets = IntegerField('Total Sets', default=0, validators=[NumberRange(min=0, message="Value must be 0 or greater")])
+    reps_field = IntegerField('Total Reps', default=1, validators=[NumberRange(min=0, message="Value must be 0 or greater")])
+    sets_field = IntegerField('Total Sets', default=1, validators=[NumberRange(min=0, message="Value must be 0 or greater")])
 
-    chest_reps = IntegerField('Total Reps', default=0, validators=[NumberRange(min=0, message="Value must be 0 or greater")])
-    chest_sets = IntegerField('Total Sets', default=0, validators=[NumberRange(min=0, message="Value must be 0 or greater")])
-
-    back_reps = IntegerField('Total Reps', default=0, validators=[NumberRange(min=0, message="Value must be 0 or greater")])
-    back_sets = IntegerField('Total Sets', default=0, validators=[NumberRange(min=0, message="Value must be 0 or greater")])
-
-    bicep_reps = IntegerField('Total Reps', default=0, validators=[NumberRange(min=0, message="Value must be 0 or greater")])
-    bicep_sets = IntegerField('Total Sets', default=0, validators=[NumberRange(min=0, message="Value must be 0 or greater")])
-
-    tricep_reps = IntegerField('Total Reps', default=0, validators=[NumberRange(min=0, message="Value must be 0 or greater")])
-    tricep_sets = IntegerField('Total Sets', default=0, validators=[NumberRange(min=0, message="Value must be 0 or greater")])
+    exercise_input = StringField(validators=[InputRequired(), Length(min=1, max=50)], render_kw={"placeholder": "Exercise Input"})
 
     submit = SubmitField("Submit")
 
 class FitnessLogCardioForm(FlaskForm):
-    miles = DecimalField('Total Miles', default=0, validators=[NumberRange(min=0, message="Value must be 0 or greater")])
+    minute_field = IntegerField('Minutes', default=0, validators=[NumberRange(min=0)])
+
+    second_field = IntegerField( 'Seconds', default=0, validators=[NumberRange(min=0, max=59)])
+
+    distance_field = DecimalField('Total Miles', default=0, validators=[InputRequired(), NumberRange(min=0, message="Value must be 0 or greater")])
+
 
     submit = SubmitField("Submit")
