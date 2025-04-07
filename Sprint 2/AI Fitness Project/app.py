@@ -104,6 +104,18 @@ def survey():
     
     return render_template('survey.html', form=form)
 
+@app.route('/workout-log', methods=['GET', 'POST'])
+@login_required
+def workout_log():
+    form = FitnessLogWorkoutForm()
+    return render_template('workout-log.html', form=form)
+
+@app.route('/cardio-log', methods=['GET', 'POST'])
+@login_required
+def cardio_log():
+    form = FitnessLogCardioForm()
+    return render_template('cardio-log.html', form=form)
+ 
 with app.app_context():
     db.create_all()  
 
