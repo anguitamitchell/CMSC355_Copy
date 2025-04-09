@@ -14,8 +14,9 @@
 
     <div class="forms-wrapper">
         <div class="cardio-form">
-            <form id="cardio-form" method="POST" action="{{ url_for('fitness_log') }}" >
+            <form id="cardio-form" method="POST" action="{{ url_for('cardio_log') }}" >
                 <div class="form-child">
+                    {{ form.csrf_token }}
                     <button id="delete-field" title="Delete">x</button>
                     <div id="distance_field">
                         <label for="distance_field">Miles</label>

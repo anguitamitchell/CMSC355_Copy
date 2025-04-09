@@ -8,6 +8,7 @@
 <body>
     {% include 'navbar.html' %}
     <h1 style="padding-bottom: 10px;">Welcome, {{ first_name|capitalize }}!</h1>
+    <a href="{{ url_for('survey') }}">Edit Fitness Goals</a>
     <h2 style="padding-bottom: 10px;">Your Fitness Goals:</h2>
     <ul>
         {% if fitness_goals %}

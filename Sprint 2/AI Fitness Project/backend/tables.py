@@ -10,6 +10,24 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(20), nullable=False)
     fitness_goals = db.Column(db.String(255), nullable=True)
 
+# Creates workout log table 
+class WorkoutTable(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    exercise = db.Column(db.String(100), nullable=False)
+    sets = db.Column(db.Integer, nullable=False)
+    reps = db.Column(db.Integer, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+# Creates cardio log table
+class CardioTable(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    distance = db.Column(db.Numeric(precision=10, scale=2), nullable=False)
+    minutes = db.Column(db.Integer, nullable=False)
+    seconds = db.Column(db.Integer, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
+    
 
     
 

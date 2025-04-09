@@ -14,8 +14,9 @@
 
     <div class="forms-wrapper">
         <div class="workout-form">
-            <form id="workout-form" method="POST" action="{{ url_for('fitness_log') }}" >
+            <form id="workout-form" method="POST" action="{{ url_for('workout_log') }}" >
                 <div class="form-child">
+                    {{ form.csrf_token }}
                     <button id="delete-field" title="Delete">x</button>
                     <div id="exercise_field">
                         {{ form.exercise_input }}
