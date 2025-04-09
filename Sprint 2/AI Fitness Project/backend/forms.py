@@ -30,7 +30,7 @@ class LoginForm(FlaskForm):
 
     submit = SubmitField("Login")
 
-
+# Sets up form on survey page
 class SurveyForm(FlaskForm):
     fitness_goals = SelectMultipleField(
         "What are your fitness goals?",
@@ -46,21 +46,22 @@ class SurveyForm(FlaskForm):
 
     submit = SubmitField("Submit")
 
-
+# Sets up form on workout log page
 class FitnessLogWorkoutForm(FlaskForm):
     reps_field = IntegerField('Total Reps', default=1, validators=[NumberRange(min=0, message="Value must be 0 or greater")])
+
     sets_field = IntegerField('Total Sets', default=1, validators=[NumberRange(min=0, message="Value must be 0 or greater")])
 
     exercise_input = StringField(validators=[InputRequired(), Length(min=1, max=50)], render_kw={"placeholder": "Exercise Input"})
 
     submit = SubmitField("Submit")
 
+# Sets up form on cardio log page
 class FitnessLogCardioForm(FlaskForm):
     minute_field = IntegerField('Minutes', default=0, validators=[NumberRange(min=0)])
 
     second_field = IntegerField( 'Seconds', default=0, validators=[NumberRange(min=0, max=59)])
 
     distance_field = DecimalField('Total Miles', default=0, validators=[InputRequired(), NumberRange(min=0, message="Value must be 0 or greater")])
-
 
     submit = SubmitField("Submit")

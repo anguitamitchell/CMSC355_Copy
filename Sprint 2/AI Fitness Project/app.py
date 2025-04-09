@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session
+from flask import Flask, render_template, session, request
 import os
 from backend.db import db
 from backend.tables import User
@@ -6,7 +6,7 @@ from flask_login import LoginManager, login_required, login_user, logout_user, c
 from flask import Flask, render_template, redirect, url_for, flash
 from flask_bcrypt import Bcrypt
 from backend.forms import RegisterForm, LoginForm, SurveyForm, FitnessLogWorkoutForm, FitnessLogCardioForm
-from backend.tables import User
+from backend.tables import User, WorkoutTable, CardioTable
 import secrets
 
 
@@ -92,6 +92,7 @@ def register():
 
     return render_template('register.html', form=form)
 
+# Renders survey page
 @app.route('/survey', methods=['GET', 'POST'])
 def survey():
     form = SurveyForm()
@@ -104,17 +105,55 @@ def survey():
     
     return render_template('survey.html', form=form)
 
+# Renders workout log page
 @app.route('/workout-log', methods=['GET', 'POST'])
 @login_required
 def workout_log():
     form = FitnessLogWorkoutForm()
+
+    if form.validate_on_submit():
+        exercises = request.form.getlist('exercise_input')
+        sets = request.form.getlist('sets_field')
+        reps = request.form.getlist('reps_field')
+        for i in range(len(exercises)):
+            if exercises[i] and sets[i].isdigit() and reps[i].isdigit():
+                workout = WorkoutTable(
+                    exercise=exercises[i],
+                    sets=int(sets[i]),
+                    reps=int(reps[i]),
+                    user_id = current_user.id)
+                db.session.add(workout)
+
+        db.session.commit()
+        return redirect('/fitness-log')
     return render_template('workout-log.html', form=form)
 
+# Renders cardio log page
 @app.route('/cardio-log', methods=['GET', 'POST'])
 @login_required
 def cardio_log():
     form = FitnessLogCardioForm()
+
+    if request.method == 'POST' and form.validate_on_submit():
+        distances = request.form.getlist('distance_field')
+        minutes = request.form.getlist('minute_field')
+        seconds = request.form.getlist('second_field')
+
+        for i in range(len(distances)):
+            if distances[i] and minutes[i].isdigit() and seconds[i].isdigit():
+                cardio = CardioTable(
+                    distance=distances[i],
+                    minutes=int(minutes[i]),
+                    seconds=int(seconds[i]),
+                    user_id=current_user.id
+                )
+                db.session.add(cardio)
+
+        db.session.commit()
+        return redirect('/fitness-log')
+
     return render_template('cardio-log.html', form=form)
+
  
 with app.app_context():
     db.create_all()  
