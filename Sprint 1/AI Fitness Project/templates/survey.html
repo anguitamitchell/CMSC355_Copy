@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Fitness Survey: What are your goals?</h1>
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <p>{{ form.fitness_goals.label }}</p>
+        {% for subfield in form.fitness_goals %}
+            <div>
+                {{ subfield }} {{ subfield.label }}
+            </div>
+        {% endfor %}
+        <br>
+        {{ form.submit() }}
+    </form>
+</body>
+</html>

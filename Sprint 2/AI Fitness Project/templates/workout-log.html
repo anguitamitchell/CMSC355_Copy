@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Log</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/workout-log.css') }}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <a href="{{ url_for('fitness_log') }}" id="back-btn"><img src="../static/images/arrow.png" type="button" alt="Back" height="20px" title="Back"></a><br><br>
+
+    <button id="add-form-btn" title="Add">+</button>
+
+    <div class="forms-wrapper">
+        <div class="workout-form">
+            <form id="workout-form" method="POST" action="{{ url_for('fitness_log') }}" >
+                <div class="form-child">
+                    <button id="delete-field" title="Delete">x</button>
+                    <div id="exercise_field">
+                        {{ form.exercise_input }}
+                    </div>
+                    <div id="sets_field">
+                        <label for="sets_field">Sets</label>
+                        {{ form.sets_field }}
+                    </div>
+
+                    <div id="reps_field">
+                        <label id="reps_field" for="reps_field">Reps</label>
+                         {{ form.reps_field }}
+                    </div>
+                </div>
+                
+
+                <div title="Submit" id="submit-button">{{ form.submit }}</div>
+            </form>
+        </div>
+    
+    <script src="static/scripts/workout-log.js"></script>
+</body>
+</html>

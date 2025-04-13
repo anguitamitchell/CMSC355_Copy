@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<head>
+    <title>FitBod</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+
+</head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #FDFEFE;
+            margin: 0;
+        }
+
+        .calendar {
+            width: 1800px;
+            height:1350px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 5px;
+            text-align: center;
+        }
+
+        .calendar-header {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: black;
+        }
+
+        .day {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 15px;
+            font-size: 16px;
+        }
+
+        .day button{
+            padding: 50px;
+            background: #AAB7B8;
+            border-radius: 5px;
+            transition: 0.1s;
+        }
+
+        .day:hover {
+            background: #E74C3C;
+            color: white;
+            cursor: pointer;
+        }
+
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .weekdays div {
+            padding: 10px;
+            color: #444;
+        }
+    </style>
+<body>
+    <div class="calendar">
+        <div class="calendar-header">March 2025</div>
+        <div class="weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+        </div>
+        <div class="day"></div>
+        <div class="calendar-days">
+            
+        </div>
+    </div>
+
+</body>
+</html>

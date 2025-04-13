@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Log</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/fitness-log.css') }}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <h1>Fitness Log</h1>
+
+    <div class="forms-wrapper">
+        <div class="workout-form">
+            <button type="button" onclick="toggleWorkoutForm()">Add Workout</button>
+
+            <form id="workout-form" method="POST" action="{{ url_for('fitness_log') }}" >
+                {{ workout_form.hidden_tag() }}
+                <div class="form-container">
+                    <h3>Legs</h3> 
+                    <label for="legs_reps">Reps</label>
+                    {{ workout_form.legs_reps }}
+                    <label for="legs_sets">Sets</label>
+                    {{ workout_form.legs_sets }}
+                </div>
+                <div class="form-container">
+                    <h3>Back</h3> 
+                    <label for="back_reps">Reps</label>
+                    {{ workout_form.back_reps }}
+                    <label for="back_sets">Sets</label>
+                    {{ workout_form.back_sets }}
+                </div>
+                <div class="form-container">
+                    <h3>Chest</h3> 
+                    <label for="chest_reps">Reps</label>
+                    {{ workout_form.chest_reps }}
+                    <label for="chest_sets">Sets</label>
+                    {{ workout_form.chest_sets }}
+                </div>
+                <div class="form-container">
+                    <h3>Tricep</h3> 
+                    <label for="tricep_reps">Reps</label>
+                    {{ workout_form.tricep_reps }}
+                    <label for="tricep_sets">Sets</label>
+                    {{ workout_form.tricep_sets }}
+                </div>
+                <div class="form-container">
+                    <h3>Bicep</h3> 
+                    <label for="bicep_reps">Reps</label>
+                    {{ workout_form.bicep_reps }}
+                    <label for="bicep_sets">Sets</label>
+                    {{ workout_form.bicep_sets }}
+                </div>
+                <div id="submit-button">{{ workout_form.submit }}</div>
+            </form>
+        </div>
+
+        <div class="cardio-form">
+            <button type="button" onclick="toggleCardioForm()">Add Cardio Session</button>
+
+            <form id="cardio-form" method="POST" action="{{ url_for('fitness_log') }}" >
+                {{ cardio_form.hidden_tag() }}
+                <div class="form-container">
+                    <label for="miles">Miles</label>
+                    {{ cardio_form.miles }}
+                </div>
+                <div id="submit-button">{{ cardio_form.submit }}</div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="static/scripts/fitness-log.js"></script>
+</body>
+</html>
