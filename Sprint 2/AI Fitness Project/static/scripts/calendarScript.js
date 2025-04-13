@@ -63,9 +63,9 @@ function calendarDisplay() {
 }
 
 function displaySelectedPlus(){
-  const plusElement = document.querySelectorAll(".plus-button");
-  plusElement.forEach((plusButton) => {
-    plusButton.addEventListener("click", (e) => {
+  const dayElements = document.querySelectorAll(".day");
+    dayElements.forEach((day) => {
+    day.addEventListener("click", (e) => {
       e.stopPropagation(); 
        createPage();
     });
@@ -89,9 +89,9 @@ bottomPage.querySelector(".close-button").addEventListener("click", () => {
 }
 
 function displaySelectedDate() {
-    const dayElements = document.querySelectorAll(".day");
-    dayElements.forEach((day) => {
-      day.addEventListener("click", (e) => {
+  const plusElement = document.querySelectorAll(".plus-button");
+  plusElement.forEach((plusButton)=> {
+      plusButton.addEventListener("click", (e) => {
        openPopup();
       });
     });
