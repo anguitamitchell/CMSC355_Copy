@@ -31,13 +31,23 @@ function calendarDisplay() {
     div.innerHTML = "";
     days.appendChild(div);
   }
-
   for (let i = 1; i <= numberOfDays; i++) {
     let div = document.createElement("div");
-
     div.classList.add("day");
-    div.innerHTML = i;
+
+    let dayNum = document.createElement("div");
+    dayNum.classList.add("days");
+    dayNum.textContent = i;
+    div.appendChild(dayNum);
+
+    let plusButton = document.createElement("button");
+    plusButton.classList.add("plus-button");
+    plusButton.textContent = "+";
+
+    div.appendChild(plusButton);
+
     days.appendChild(div);
+
 
     let currentDate = new Date(year, month, i);
     if (
@@ -47,22 +57,73 @@ function calendarDisplay() {
     ) {
       div.classList.add("current-date");
     }
-  }
-
-  displaySelected();
+  } 
+  displaySelectedDate();
+  displaySelectedPlus();
 }
 
-function displaySelected() {
-    const dayElements = document.querySelectorAll(".days div");
+function displaySelectedPlus(){
+  const plusElement = document.querySelectorAll(".plus-button");
+  plusElement.forEach((plusButton) => {
+    plusButton.addEventListener("click", (e) => {
+      e.stopPropagation(); 
+       createPage();
+    });
+  });
+}
+
+function createPage(){
+  const bottomPage = document.createElement("div");
+  bottomPage.classList.add("bottom-page");
+  bottomPage.innerHTML = `
+    <div class="bottom-page" id="bottomPage">
+  <button class="close-button" >✕</button>
+  <h2>FITNESS LOG INFO TO BE PLACED HERE</h2>
+</div>
+`;
+document.body.appendChild(bottomPage);
+
+bottomPage.querySelector(".close-button").addEventListener("click", () => {
+  bottomPage.remove();
+});
+}
+
+function displaySelectedDate() {
+    const dayElements = document.querySelectorAll(".day");
     dayElements.forEach((day) => {
       day.addEventListener("click", (e) => {
-        const selectedDate = e.target.dataset.date;
-        selected.innerHTML = `Selected Date : ${selectedDate}`;
-        window.open("/Sprint 2/AI Fitness Project/templates/fitness-log.html", '_blank')
+       openPopup();
       });
     });
   }
-  displaySelected();
+function openPopup(){
+  const popup = document.createElement("div");
+  popup.classList.add("popup-container");
+
+  popup.innerHTML = `
+  <div class="popup">
+    <button class="cardio">Cardio</button>
+     <button class="muscular">Muscular</button>
+      <button class="removeButton">✕</button>
+  </div>
+  `;
+
+  document.body.appendChild(popup);
+
+  popup.querySelector(".removeButton").addEventListener("click", () => {
+    popup.remove();
+  });
+  popup.querySelector(".cardio").addEventListener("click", cardioLink);
+  popup.querySelector(".muscular").addEventListener("click", muscularLink);
+}
+
+function cardioLink() {
+  window.open("/Sprint 2/AI Fitness Project/templates/cardio-log.html", "_blank");
+}
+
+function muscularLink() {
+  window.open("/Sprint 2/AI Fitness Project/templates/fitness-log.html", "_blank");
+}
 
 previous.addEventListener("click", () => {
   month--;
