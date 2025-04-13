@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <h1 style="padding-bottom: 10px;">Welcome, {{ first_name|capitalize }}!</h1>
+    <a href="{{ url_for('survey') }}">Edit Fitness Goals</a>
+    <h2 style="padding-bottom: 10px;">Your Fitness Goals:</h2>
+    <ul>
+        {% if fitness_goals %}
+            {% for goal in fitness_goals %}
+               
+                <li style="padding-left: 20px;">
+                    {{ goal }}
+                </li>
+            {% endfor %}
+        {% else %}
+            <p>No fitness goals set.</p>
+        {% endif %}
+    </ul>
+</body>
+</html>
