@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Log</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/cardio-log.css') }}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <a href="{{ url_for('fitness_log') }}" id="back-btn"><img src="../static/images/arrow.png" type="button" alt="Back" height="20px" title="Back"></a><br><br>
+
+    <button id="add-form-btn" title="Add">+</button>
+
+    <div class="forms-wrapper">
+        <div class="cardio-form">
+            <form id="cardio-form" method="POST" action="{{ url_for('cardio_log') }}" >
+                <div class="form-child">
+                    {{ form.csrf_token }}
+                    <button id="delete-field" title="Delete">x</button>
+                    <div id="distance_field">
+                        <label for="distance_field">Miles</label>
+                        {{ form.distance_field }}
+                    </div>
+                    <div id="minute_field">
+                        <label id="minute_field" for="minute_field">Minutes</label>
+                         {{ form.minute_field }}
+                    </div>
+                    <div id="second_field">
+                        <label id="second_field" for="second_field">Seconds</label>
+                         {{ form.second_field }}
+                    </div>
+                </div>
+                <div title="Submit" id="submit-button">{{ form.submit }}</div>
+            </form>
+        </div>
+    
+    <script src="static/scripts/cardio-log.js"></script>
+</body>
+</html>

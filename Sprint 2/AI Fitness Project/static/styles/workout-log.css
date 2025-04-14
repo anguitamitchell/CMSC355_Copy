@@ -1,0 +1,56 @@
+.forms-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;  
+    margin-top: 25px;
+    
+}
+
+
+.workout-form {
+    width: 800px;
+}
+
+.form-child{
+    display: inline-flex;
+    border-style: solid;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgb(228, 224, 224);
+    font-weight: 1000;
+    margin-bottom: 10px;
+}
+
+#delete-field {
+    all: unset; 
+    color: black; 
+    border-radius: 5px;
+    size: 5px;
+    padding-right: 15px;
+    cursor: pointer;
+}
+
+#sets_field {
+    margin-right: 15px;
+}
+
+
+#exercise_field {
+    padding-right: 20px;
+}
+
+
+
+#submit-button {
+    padding-top: 15px;
+}
+
+#add-form-btn {
+    float: right;
+    margin-right: 965px;
+}
+
+#back-btn{
+    padding-left: 15px;
+}
