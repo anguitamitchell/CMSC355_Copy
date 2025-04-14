@@ -118,11 +118,11 @@ function openPopup(){
 }
 
 function cardioLink() {
-  window.open("/Sprint 2/AI Fitness Project/templates/cardio-log.html", "_blank");
+  window.open("/Sprint 3/AI Fitness Project/templates/cardio-log.html", "_blank");
 }
 
 function muscularLink() {
-  window.open("/Sprint 2/AI Fitness Project/templates/fitness-log.html", "_blank");
+  window.open("/Sprint 3/AI Fitness Project/templates/workout-log.html", "_blank");
 }
 
 previous.addEventListener("click", () => {
