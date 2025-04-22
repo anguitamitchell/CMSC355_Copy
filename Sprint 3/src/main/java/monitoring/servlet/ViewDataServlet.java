@@ -15,13 +15,14 @@ import java.util.stream.Collectors;
 
 public class ViewDataServlet extends HttpServlet {
 
-    private static final String ENTRIES_FILE = "src/main/webapp/data/entries.json";
+    private static final String ENTRIES_FILE = "src/main/resources/entries.json";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String username = (String) request.getSession().getAttribute("username");
         System.out.println("ViewDataServlet - Username from session: " + username);
+        String admin = "admin";
 
         if (username == null) {
             request.getSession().invalidate();
@@ -30,12 +31,19 @@ public class ViewDataServlet extends HttpServlet {
         }
 
         List<Entry> allEntries = loadEntries();
-        List<Entry> userEntries = allEntries.stream()
-            .filter(e -> e.getUsername() != null && e.getUsername().equals(username))
-            .collect(Collectors.toList());
+        
 
-        request.setAttribute("entries", userEntries);
-        request.getRequestDispatcher("viewData.jsp").forward(request, response);
+        
+        if(admin.equals((String)request.getSession().getAttribute("userType"))){
+            request.setAttribute("entries", allEntries);
+            request.getRequestDispatcher("adminData.jsp").forward(request, response);
+        }else {
+            List<Entry> userEntries = allEntries.stream()
+                .filter(e -> e.getUsername() != null && e.getUsername().equals(username))
+                .collect(Collectors.toList());
+            request.setAttribute("entries", userEntries);
+            request.getRequestDispatcher("viewData.jsp").forward(request, response);
+        }
     }
 
     private List<Entry> loadEntries() {

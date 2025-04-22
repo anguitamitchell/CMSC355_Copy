@@ -1,12 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.Map" %>
+<%@ page import="monitoring.Entry" %>
+<%@ page import="jakarta.servlet.http.HttpSession" %>
 <%
     HttpSession currentSession = request.getSession(false);
     String username = (currentSession != null) ? (String) currentSession.getAttribute("username") : null;
-    List<Map<String, String>> entries = (List<Map<String, String>>) request.getAttribute("entries");
+    List<Entry> entries = (List<Entry>) request.getAttribute("entries");
 
     if (username == null) {
+        currentSession.invalidate();
         response.sendRedirect("login.jsp");
         return;
     }
@@ -14,7 +16,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>GlucoTracker Data - Admin View</title>
+    <title>GlucoTracker - View Data</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -25,7 +27,7 @@
         }
 
         h1 {
-            background: #4a90e2;
+            background: #e24a8c;
             color: white;
             margin: 0;
             padding: 1rem;
@@ -43,7 +45,7 @@
             margin-top: 2rem;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(46, 24, 37, 0.1);
         }
 
         th, td {
@@ -56,7 +58,7 @@
         }
 
         .back-button {
-            background: #4a90e2;
+            background: #e24ac6;
             color: white;
             padding: 0.75rem 1.5rem;
             border: none;
@@ -74,11 +76,11 @@
     </style>
 </head>
 <body>
-    <h1>GlucoTracker - Client Health Data</h1>
+    <h1>GlucoTracker - Your Health Data</h1>
 
     <table>
         <tr>
-            <th>User</th>
+            <th>Username</th>
             <th>Date</th>
             <th>Carbs (g)</th>
             <th>Glucose (mg/dL)</th>
@@ -86,14 +88,14 @@
         </tr>
         <%
             if (entries != null && !entries.isEmpty()) {
-                for (Map<String, String> entry : entries) {
+                for (Entry entry : entries) {
         %>
         <tr>
-            <td><%= entry.get("username") %></td>
-            <td><%= entry.get("date") %></td>
-            <td><%= entry.get("carbs") %></td>
-            <td><%= entry.get("glucose") %></td>
-            <td><%= entry.get("insulinUnits") %></td>
+            <td><%= entry.getUsername() %></td>
+            <td><%= entry.getDate() %></td>
+            <td><%= entry.getCarbs() %></td>
+            <td><%= entry.getGlucose() %></td>
+            <td><%= entry.getUnits() %></td>
         </tr>
         <%
                 }

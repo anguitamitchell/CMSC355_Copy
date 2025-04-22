@@ -36,6 +36,28 @@ public class UserService {
         return false;
     }
 
+    public String getAccountData(String username, String data){
+        Account user = userAccounts.get(username);
+        String accData = "error";
+        if(data.equals("userType")){
+            accData = user.getUserType();
+            return accData;
+        }
+        if(data.equals("email")){
+            accData = user.getEmail();
+            return accData;
+        }
+        if(data.equals("birthday")){
+            accData = user.getDob();
+            return accData;
+        }
+        if(data.equals("name")){
+            accData = user.getFullName();
+            return accData;
+        }
+        return accData;
+    }
+
     public boolean login(String username, String password) {
         return credentials.containsKey(username) && credentials.get(username).equals(password);
     }

@@ -20,9 +20,9 @@ public class LoginServlet extends HttpServlet {
         boolean success = userService.authenticate(username, password);
         if (success) {
             request.getSession().setAttribute("username", username);
-            request.getSession().setAttribute("userType", request.getParameter("userType"));
+            request.getSession().setAttribute("userType", userService.getAccountData(username, "userType"));
             if (admin.equals((String) request.getSession().getAttribute("userType"))) {
-                response.sendRedirect("dashboard.jsp");
+                response.sendRedirect("adminData.jsp");
             } else {
                 response.sendRedirect("dashboard.jsp");
             }

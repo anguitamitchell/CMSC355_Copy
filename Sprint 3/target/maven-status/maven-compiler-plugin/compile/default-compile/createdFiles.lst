@@ -1,3 +1,4 @@
+monitoring\servlet\EditMealtimeServlet$1.class
 monitoring\UserService.class
 monitoring\servlet\LoginServlet.class
 monitoring\Account.class
@@ -6,6 +7,7 @@ monitoring\servlet\ViewDataServlet.class
 monitoring\servlet\DashboardServlet.class
 monitoring\MealtimeEditor.class
 monitoring\UserService$2.class
+monitoring\MealtimeEditor$1.class
 monitoring\servlet\EditMealtimeServlet.class
 monitoring\UserService$1.class
 monitoring\servlet\ViewDataServlet$1.class

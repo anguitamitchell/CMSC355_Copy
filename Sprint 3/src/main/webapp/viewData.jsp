@@ -88,6 +88,7 @@
         <%
             if (entries != null && !entries.isEmpty()) {
                 for (Entry entry : entries) {
+                    if (username.equals(entry.getUsername())) {
         %>
         <tr>
             <td><%= entry.getDate() %></td>
@@ -96,7 +97,7 @@
             <td><%= entry.getUnits() %></td>
         </tr>
         <%
-                    //}
+                    }
                 }
             } else {
         %>
