@@ -7,6 +7,7 @@
     List<Map<String, String>> entries = (List<Map<String, String>>) request.getAttribute("entries");
 
     if (username == null) {
+        currentSession.invalidate();
         response.sendRedirect("login.jsp");
         return;
     }
@@ -86,6 +87,7 @@
         <%
             if (entries != null && !entries.isEmpty()) {
                 for (Map<String, String> entry : entries) {
+                    //if(entry.get("username").equals(request.getSession.getAttribute("username"))) {
         %>
         <tr>
             <td><%= entry.get("date") %></td>
@@ -94,6 +96,7 @@
             <td><%= entry.get("insulinUnits") %></td>
         </tr>
         <%
+                    //}
                 }
             } else {
         %>

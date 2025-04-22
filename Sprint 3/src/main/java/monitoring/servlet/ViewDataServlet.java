@@ -24,6 +24,7 @@ public class ViewDataServlet extends HttpServlet {
         String username = (String) request.getSession().getAttribute("username");
 
         if (username == null) {
+            request.getSession().invalidate();
             response.sendRedirect("login.jsp");
             return;
         }

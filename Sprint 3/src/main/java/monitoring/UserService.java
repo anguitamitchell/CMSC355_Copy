@@ -18,7 +18,7 @@ public class UserService {
     private Map<String, String> credentials = new HashMap<>();
     private Map<String, Account> userAccounts = new HashMap<>();
     private Map<String, Boolean> sessionStatus = new HashMap<>();
-    private static final String FILE_PATH = "accounts.json";
+    private static final String FILE_PATH = "src/main/resources/accounts.json";
     private final Gson gson = new Gson();
 
     public UserService() {

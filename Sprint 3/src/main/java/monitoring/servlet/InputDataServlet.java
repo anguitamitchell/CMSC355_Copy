@@ -10,7 +10,7 @@ import com.google.gson.Gson;
 
 public class InputDataServlet extends HttpServlet {
 
-    private static final String FILE_PATH = "src/main/webapp/data/entries.json";
+    private static final String FILE_PATH = "src/main/resources/entries.json";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -22,6 +22,7 @@ public class InputDataServlet extends HttpServlet {
         String units = request.getParameter("units");
 
         Map<String, String> newEntry = new HashMap<>();
+        newEntry.put("username", (String) request.getSession().getAttribute("username"));
         newEntry.put("date", date);
         newEntry.put("glucose", glucose);
         newEntry.put("carbs", carbs);

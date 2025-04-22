@@ -10,6 +10,7 @@ public class DashboardServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("user") == null) {
+            request.getSession().invalidate();
             response.sendRedirect("login.jsp");
             return;
         }
