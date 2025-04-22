@@ -94,7 +94,7 @@ public class UserService {
 
     private List<Account> loadAccounts() {
         List<Account> accounts = new ArrayList<>();
-        File file = new File("accounts.json");
+        File file = new File("src/main/resources/accounts.json");
 
         if (!file.exists()) {
             return accounts; // return empty list if file doesn't exist
