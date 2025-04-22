@@ -1,41 +1,90 @@
 package monitoring.servlet;
 
-import jakarta.servlet.ServletException;
+import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
-import com.google.gson.Gson;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.util.*;
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 
 public class EditMealtimeServlet extends HttpServlet {
-
-    private static final String FILE_PATH = "src/main/webapp/data/mealtime.json";
+    private final File file = new File("src/main/resources/mealtimes.json");
+    private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        String breakfast = request.getParameter("breakfastTime");
-        String lunch = request.getParameter("lunchTime");
-        String dinner = request.getParameter("dinnerTime");
-        String carbRatio = request.getParameter("carbRatio");
-
-        Map<String, String> data = new HashMap<>();
-        data.put("breakfast", breakfast);
-        data.put("lunch", lunch);
-        data.put("dinner", dinner);
-        data.put("carbRatio", carbRatio);
-
-        Gson gson = new Gson();
-        String json = gson.toJson(data);
-
-        Files.createDirectories(Paths.get("src/main/webapp/data"));
-        try (FileWriter writer = new FileWriter(FILE_PATH)) {
-            writer.write(json);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("EditMealtimeServlet GET method reached.");
+        HttpSession session = request.getSession(false);
+        System.out.println("Session: " + session);
+        System.out.println("Username from session: " + (session != null ? session.getAttribute("username") : "null"));
+        if (session == null || session.getAttribute("username") == null) {
+            System.out.println("EditMealtimeServlet GET: Redirecting because session is " + session + " and username is " + (session != null ? session.getAttribute("username") : "null"));
+            response.sendRedirect("login.jsp");
+            return;
         }
 
+
+        String username = (String) session.getAttribute("username");
+
+        Map<String, Map<String, Map<String, Object>>> allData = loadMealtimes();
+        Map<String, Map<String, Object>> userMeals = allData.getOrDefault(username, new HashMap<>());
+        request.setAttribute("mealtimes", userMeals);
+
+        request.getRequestDispatcher("editMealtime.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("EditMealtimeServlet POST method reached.");
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("username") == null) {
+            System.out.println("EditMealtimeServlet GET: Redirecting because session is " + session + " and username is " + (session != null ? session.getAttribute("username") : "null"));
+            response.sendRedirect("login.jsp");
+            return;
+        }
+
+        String username = (String) session.getAttribute("username");
+
+        Map<String, Map<String, Map<String, Object>>> allData = loadMealtimes();
+        Map<String, Map<String, Object>> userMeals = new HashMap<>();
+
+        String ratioStr = request.getParameter("carbToUnitRatio");
+        int ratio = 0;
+        try {
+            ratio = Integer.parseInt(ratioStr);
+        } catch (NumberFormatException ignored) {}
+
+        for (String meal : Arrays.asList("breakfast", "lunch", "dinner")) {
+            String time = request.getParameter(meal + "Time");
+
+            Map<String, Object> mealData = new HashMap<>();
+            mealData.put("time", time);
+            mealData.put("carbToUnitRatio", ratio);
+            userMeals.put(meal, mealData);
+        }
+
+        allData.put(username, userMeals);
+        saveMealtimes(allData);
+
         response.sendRedirect("dashboard.jsp");
+    }
+
+    private Map<String, Map<String, Map<String, Object>>> loadMealtimes() {
+        if (!file.exists()) return new HashMap<>();
+
+        try (Reader reader = new FileReader(file)) {
+            return gson.fromJson(reader, new TypeToken<Map<String, Map<String, Map<String, Object>>>>(){}.getType());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new HashMap<>();
+        }
+    }
+
+    private void saveMealtimes(Map<String, Map<String, Map<String, Object>>> data) {
+        try (Writer writer = new FileWriter(file)) {
+            gson.toJson(data, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

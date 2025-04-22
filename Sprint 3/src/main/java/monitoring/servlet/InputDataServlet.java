@@ -13,8 +13,23 @@ public class InputDataServlet extends HttpServlet {
     private static final String FILE_PATH = "src/main/webapp/data/entries.json";
 
     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("username") == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
+
+        // Forward to inputData.jsp
+        request.getRequestDispatcher("inputData.jsp").forward(request, response);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        HttpSession session = request.getSession(false);
+        String username = (session != null) ? (String) session.getAttribute("username") : null;
 
         String date = request.getParameter("date");
         String glucose = request.getParameter("glucose");
@@ -22,6 +37,7 @@ public class InputDataServlet extends HttpServlet {
         String units = request.getParameter("units");
 
         Map<String, String> newEntry = new HashMap<>();
+        newEntry.put("username", username);
         newEntry.put("date", date);
         newEntry.put("glucose", glucose);
         newEntry.put("carbs", carbs);

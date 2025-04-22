@@ -23,7 +23,7 @@ public class Entry {
         return glucose;
     }
 
-    public double getInsulinUnits() {
+    public double getUnits() {
         return insulinUnits;
     }
 }

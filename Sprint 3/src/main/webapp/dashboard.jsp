@@ -53,13 +53,13 @@
     <h1>Welcome to Your GlucoTracker Dashboard</h1>
 
     <div class="button-container">
-        <form action="viewData.jsp">
+        <form action="viewData">
             <button type="submit">View Health Data</button>
         </form>
-        <form action="editMealtime.jsp">
+        <form action="editMealtime" method="get">
             <button type="submit">Edit Mealtimes & Carb Ratio</button>
         </form>
-        <form action="inputData.jsp">
+        <form action="inputData">
             <button type="submit">Input Carb & Glucose Levels</button>
         </form>
         <form action="login.jsp">

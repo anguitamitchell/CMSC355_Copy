@@ -1,46 +1,52 @@
 package monitoring;
-import java.util.Map;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.*;
+import java.lang.reflect.Type;
 import java.util.HashMap;
+import java.util.Map;
 
 public class MealtimeEditor {
-    private String mealtime;
-    private int carbToUnitRatio;
+    private static final String MEALTIME_FILE = "src/main/resources/mealtimes.json";
+    private final Gson gson = new Gson();
 
-    public void updateMealtime(String mealtime, String ratioInput, int fallbackRatio) {
-        if (mealtime == null || mealtime.trim().isEmpty()) {
-            throw new IllegalArgumentException("Mealtime cannot be empty.");
+    // Loads the entire mealtime file as a Map<username, Map<meal, Map<time/ratio, value>>>
+    private Map<String, Map<String, Map<String, String>>> loadMealtimes() {
+        try (Reader reader = new FileReader(MEALTIME_FILE)) {
+            Type type = new TypeToken<Map<String, Map<String, Map<String, String>>>>() {}.getType();
+            Map<String, Map<String, Map<String, String>>> mealtimes = gson.fromJson(reader, type);
+            return (mealtimes != null) ? mealtimes : new HashMap<>();
+        } catch (IOException e) {
+            return new HashMap<>();
         }
+    }
 
-        int ratio;
-        try {
-            ratio = Integer.parseInt(ratioInput);
-        } catch (NumberFormatException e) {
-            ratio = fallbackRatio;
+    // Saves the full structure back to file
+    private void saveMealtimes(Map<String, Map<String, Map<String, String>>> mealtimes) {
+        try (Writer writer = new FileWriter(MEALTIME_FILE)) {
+            gson.toJson(mealtimes, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        if (ratio <= 0) {
-            throw new IllegalArgumentException("Carb-to-unit ratio must be positive.");
-        }
-
-        this.mealtime = mealtime;
-        this.carbToUnitRatio = ratio;
     }
 
-    public String getMealtime() {
-        return mealtime;
+    public void updateMealtime(String username, String meal, String time, int carbToUnitRatio) {
+        Map<String, Map<String, Map<String, String>>> mealtimes = loadMealtimes();
+        mealtimes.putIfAbsent(username, new HashMap<>());
+        Map<String, Map<String, String>> userMeals = mealtimes.get(username);
+
+        Map<String, String> mealData = new HashMap<>();
+        mealData.put("time", time);
+        mealData.put("carbToUnitRatio", String.valueOf(carbToUnitRatio));
+        userMeals.put(meal.toLowerCase(), mealData);
+
+        saveMealtimes(mealtimes);
     }
 
-    public int getCarbToUnitRatio() {
-        return carbToUnitRatio;
+    public Map<String, Map<String, String>> getUserMeals(String username) {
+        Map<String, Map<String, Map<String, String>>> mealtimes = loadMealtimes();
+        return mealtimes.getOrDefault(username, new HashMap<>());
     }
-
-    // Returns dummy meal data for testing the dashboard
-    public Map<String, Integer> getUserMeals(String username) {
-        Map<String, Integer> meals = new HashMap<>();
-        meals.put("Breakfast", 45);
-        meals.put("Lunch", 60);
-        meals.put("Dinner", 50);
-        return meals;
-    }
-
 }

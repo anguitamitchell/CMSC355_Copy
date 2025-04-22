@@ -1,10 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.Map" %>
+<%@ page import="monitoring.Entry" %>
+<%@ page import="jakarta.servlet.http.HttpSession" %>
 <%
     HttpSession currentSession = request.getSession(false);
     String username = (currentSession != null) ? (String) currentSession.getAttribute("username") : null;
-    List<Map<String, String>> entries = (List<Map<String, String>>) request.getAttribute("entries");
+    List<Entry> entries = (List<Entry>) request.getAttribute("entries");
 
     if (username == null) {
         response.sendRedirect("login.jsp");
@@ -85,13 +86,13 @@
         </tr>
         <%
             if (entries != null && !entries.isEmpty()) {
-                for (Map<String, String> entry : entries) {
+                for (Entry entry : entries) {
         %>
         <tr>
-            <td><%= entry.get("date") %></td>
-            <td><%= entry.get("carbs") %></td>
-            <td><%= entry.get("glucose") %></td>
-            <td><%= entry.get("insulinUnits") %></td>
+            <td><%= entry.getDate() %></td>
+            <td><%= entry.getCarbs() %></td>
+            <td><%= entry.getGlucose() %></td>
+            <td><%= entry.getUnits() %></td>
         </tr>
         <%
                 }
