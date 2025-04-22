@@ -24,6 +24,7 @@ public class ViewDataServlet extends HttpServlet {
         System.out.println("ViewDataServlet - Username from session: " + username);
 
         if (username == null) {
+            request.getSession().invalidate();
             response.sendRedirect("login.jsp");
             return;
         }

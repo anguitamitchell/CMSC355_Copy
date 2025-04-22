@@ -14,12 +14,19 @@ public class LoginServlet extends HttpServlet {
         // Get login credentials from form
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String admin = "admin";
 
         // Check against stored accounts
         boolean success = userService.authenticate(username, password);
         if (success) {
             request.getSession().setAttribute("username", username);
-            response.sendRedirect("dashboard");
+            request.getSession().setAttribute("userType", request.getParameter("userType"));
+            if (admin.equals((String) request.getSession().getAttribute("userType"))) {
+                response.sendRedirect("dashboard.jsp");
+            } else {
+                response.sendRedirect("dashboard.jsp");
+            }
+            
         } else {
             request.setAttribute("error", "Invalid username or password.");
             request.getRequestDispatcher("login.jsp").forward(request, response);

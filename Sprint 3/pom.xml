@@ -10,6 +10,7 @@
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -53,7 +54,7 @@
                             <target>
                                 <echo message="-------------------------------------------------" />
                                 <echo message="To access the GlucoTracker website:" />
-                                <echo message="  http://localhost:8080/register.jsp" />
+                                <echo message="  http://localhost:8080/login.jsp" />
                                 <echo message="" />
                                 <echo message="To stop the server:" />
                                 <echo message="  Press CTRL + C in this terminal" />

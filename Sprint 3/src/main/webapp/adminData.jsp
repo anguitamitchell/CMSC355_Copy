@@ -1,14 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
-<%@ page import="monitoring.Entry" %>
-<%@ page import="jakarta.servlet.http.HttpSession" %>
+<%@ page import="java.util.Map" %>
 <%
     HttpSession currentSession = request.getSession(false);
     String username = (currentSession != null) ? (String) currentSession.getAttribute("username") : null;
-    List<Entry> entries = (List<Entry>) request.getAttribute("entries");
+    List<Map<String, String>> entries = (List<Map<String, String>>) request.getAttribute("entries");
 
     if (username == null) {
-        currentSession.invalidate();
         response.sendRedirect("login.jsp");
         return;
     }
@@ -16,7 +14,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>GlucoTracker - View Data</title>
+    <title>GlucoTracker Data - Admin View</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -76,10 +74,11 @@
     </style>
 </head>
 <body>
-    <h1>GlucoTracker - Your Health Data</h1>
+    <h1>GlucoTracker - Client Health Data</h1>
 
     <table>
         <tr>
+            <th>User</th>
             <th>Date</th>
             <th>Carbs (g)</th>
             <th>Glucose (mg/dL)</th>
@@ -87,16 +86,16 @@
         </tr>
         <%
             if (entries != null && !entries.isEmpty()) {
-                for (Entry entry : entries) {
+                for (Map<String, String> entry : entries) {
         %>
         <tr>
-            <td><%= entry.getDate() %></td>
-            <td><%= entry.getCarbs() %></td>
-            <td><%= entry.getGlucose() %></td>
-            <td><%= entry.getUnits() %></td>
+            <td><%= entry.get("username") %></td>
+            <td><%= entry.get("date") %></td>
+            <td><%= entry.get("carbs") %></td>
+            <td><%= entry.get("glucose") %></td>
+            <td><%= entry.get("insulinUnits") %></td>
         </tr>
         <%
-                    //}
                 }
             } else {
         %>
@@ -106,8 +105,8 @@
         <% } %>
     </table>
 
-    <form action="dashboard.jsp" method="get" style="margin-top: 1rem;">
-        <button type="submit" style="padding: 0.5rem 1rem; font-size: 1rem;">Back to Dashboard</button>
+    <form action="login.jsp" method="get" style="margin-top: 1rem;">
+        <button type="submit" style="padding: 0.5rem 1rem; font-size: 1rem;">Log Out</button>
     </form>
 
     <div class="footer">

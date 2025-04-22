@@ -10,7 +10,7 @@ import com.google.gson.Gson;
 
 public class InputDataServlet extends HttpServlet {
 
-    private static final String FILE_PATH = "src/main/webapp/data/entries.json";
+    private static final String FILE_PATH = "src/main/resources/entries.json";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
