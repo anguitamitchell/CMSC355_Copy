@@ -18,30 +18,54 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #f0f4f8;
+            background-color: #f0f4f8;
             margin: 0;
             padding: 0;
             text-align: center;
         }
+
         h1 {
             background: #4a90e2;
             color: white;
             margin: 0;
             padding: 1rem;
         }
-        table {
-            width: 80%;
+
+        .container {
             margin: 2rem auto;
+            width: 80%;
+        }
+
+        table {
+            width: 100%;
             border-collapse: collapse;
             background: white;
+            margin-top: 2rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
+
         th, td {
             padding: 0.75rem;
             border: 1px solid #ccc;
         }
+
         th {
             background: #e4eaf1;
         }
+
+        .back-button {
+            background: #4a90e2;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            margin-top: 1.5rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
         .footer {
             font-size: 0.8rem;
             margin-top: 3rem;

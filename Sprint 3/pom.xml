@@ -52,7 +52,7 @@
                         <configuration>
                             <target>
                                 <echo message="-------------------------------------------------" />
-                                <echo message="To access the Medication Monitor website:" />
+                                <echo message="To access the GlucoTracker website:" />
                                 <echo message="  http://localhost:8080/register.jsp" />
                                 <echo message="" />
                                 <echo message="To stop the server:" />

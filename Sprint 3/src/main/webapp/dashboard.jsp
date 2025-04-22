@@ -5,24 +5,47 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
             text-align: center;
-            margin-top: 50px;
         }
+
         h1 {
-            font-size: 28px;
+            background: #4a90e2;
+            color: white;
+            margin: 0;
+            padding: 1rem;
         }
-        .button-container {
-            margin-top: 30px;
+
+        .container {
+            margin: 3rem auto;
+            width: 300px;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        .button-container form {
-            margin: 10px;
+
+        form {
+            margin-top: 1rem;
         }
-        button {
-            padding: 10px 25px;
-            font-size: 16px;
+
+        input[type="submit"] {
+            background: #4a90e2;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            margin: 0.5rem 0;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            width: 100%;
+        }
+
+        .footer {
+            font-size: 0.8rem;
+            margin-top: 3rem;
+            color: #666;
         }
     </style>
 </head>

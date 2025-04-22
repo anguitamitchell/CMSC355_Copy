@@ -1,59 +1,57 @@
 <html>
 <head><title>GlucoTracker - Register</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f7f9;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-    align-items: center;
-    justify-content: center;
-  }
-  h2 {
-    text-align: center;
-  }
-  form {
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-    width: 300px;
-  }
-  input[type="text"], input[type="email"], input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-top: 6px;
-    margin-bottom: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-  }
-  input[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  input[type="submit"]:hover {
-    background-color: #45a049;
-  }
-  .footer {
-    margin-top: 30px;
-    font-size: 0.8em;
-    text-align: center;
-    color: #555;
-  }
-  a {
-    display: block;
-    margin-top: 10px;
-    text-align: center;
-    color: #663399;
-    text-decoration: none;
-  }
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f4f8;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+    h1 {
+        background: #4a90e2;
+        color: white;
+        margin: 0;
+        padding: 1rem;
+    }
+
+    form {
+        background: white;
+        padding: 2rem;
+        margin: 2rem auto;
+        width: 300px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    input[type="text"], input[type="password"], input[type="email"], input[type="date"] {
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    input[type="submit"] {
+        background: #4a90e2;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .footer {
+        font-size: 0.8rem;
+        margin-top: 3rem;
+        color: #666;
+    }
+
+    .error {
+        color: red;
+        margin-bottom: 1rem;
+    }
 </style>
 </head>
 <body>
