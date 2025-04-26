@@ -1,3 +1,5 @@
+![](images/drugs.jpg)
+
 # Welcome to PharmaSense AI
 
 - [Welcome to PharmaSense AI](#welcome-to-pharmasense-ai)
