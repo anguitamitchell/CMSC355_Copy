@@ -23,7 +23,7 @@ Here are our presentation slides: <https://docs.google.com/presentation/d/16ZitU
 
 ## Set-up Instructions
 
-Ensure you have your own openrouter api key
+Ensure you have your own openrouter api key: <https://openrouter.ai/settings/keys>
 
 Run from the terminal
 - cd AssignmentRepoDemo (from YashSonar20's GitHub)
@@ -31,6 +31,7 @@ Run from the terminal
 - cd AiMedTracker 
 - cd backend 
 - pip3 install -r requirements.txt
+- ADD YOUR API KEY: touch .env, nano.env, "OPENROUTER_API_KEY=(YOUR API KEY)"
 - cd ..
 - cd frontend
 - npm install
