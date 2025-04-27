@@ -24,6 +24,7 @@ Here are our presentation slides: <https://docs.google.com/presentation/d/16ZitU
 ## Set-up Instructions
 
 Run from the terminal
+- sudo apt install nodejs npm
 - cd AssignmentRepoDemo (from YashSonar20's GitHub)
 - cd AiMedTracker 
 - cd backend 
