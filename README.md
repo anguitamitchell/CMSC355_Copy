@@ -5,6 +5,7 @@
 - [Welcome to PharmaSense AI!](#welcome-to-pharmasense-ai)
   - [Overview](#overview)
   - [Presentation Slides](#presentation-slides)
+  - [Set-up Instructions](#set-up-instructions)
   - [Group Members](#group-members)
 
 
@@ -19,6 +20,18 @@ This is for the purpose of reducing risk of adverse drug events, enhancing patie
 ## Presentation Slides
 
 Here are our presentation slides: <https://docs.google.com/presentation/d/16ZitUTX_etUuWYf-bBnUbBZGRjUFJhW70R-tifPpJEw/edit?usp=sharing>
+
+## Set-up Instructions
+
+Run from the terminal
+- cd AssignmentRepoDemo (from YashSonar20's GitHub)
+- cd AiMedTracker 
+- cd backend
+- npm run dev
+- cd ..
+- cd frontend
+- npm run dev
+- ctrl + click the link in the terminal
 
 ## Group Members
 
