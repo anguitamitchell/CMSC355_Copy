@@ -23,15 +23,18 @@ Here are our presentation slides: <https://docs.google.com/presentation/d/16ZitU
 
 ## Set-up Instructions
 
+Ensure you have your own openrouter api key
+
 Run from the terminal
 - sudo apt install nodejs npm
+- pip3 install -r requirements.txt
 - cd AssignmentRepoDemo (from YashSonar20's GitHub)
 - cd AiMedTracker 
 - cd backend 
-- (main.py file) npm run dev
+- npm run dev
 - cd ..
 - cd frontend
-- (main.py file) npm run dev
+- npm run dev
 - ctrl + click the link in the terminal
 
 ## Group Members
