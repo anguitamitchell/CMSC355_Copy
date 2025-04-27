@@ -26,11 +26,11 @@ Here are our presentation slides: <https://docs.google.com/presentation/d/16ZitU
 Run from the terminal
 - cd AssignmentRepoDemo (from YashSonar20's GitHub)
 - cd AiMedTracker 
-- cd backend
-- npm run dev
+- cd backend 
+- (main.py file) npm run dev
 - cd ..
 - cd frontend
-- npm run dev
+- (main.py file) npm run dev
 - ctrl + click the link in the terminal
 
 ## Group Members
