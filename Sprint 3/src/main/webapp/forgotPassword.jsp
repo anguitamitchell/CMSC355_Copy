@@ -1,7 +1,18 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="jakarta.servlet.http.HttpSession" %>
+<%
+    HttpSession currentSession = request.getSession(false);
+    if (currentSession == null || currentSession.getAttribute("username") == null) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+
+    Map<String, Map<String, Object>> mealtimes = (Map<String, Map<String, Object>>) request.getAttribute("mealtimes");
+%>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Input Carb & Glucose Data</title>
+    <title>GlucoTracker - Edit Mealtimes</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -58,26 +69,17 @@
         }
     </style>
 </head>
-
 <body>
-    <h1>GlucoTracker Data Input</h1>
-    <h2>Input Daily Data</h2>
-    <form action="inputData" method="post">
-        <label>Date (MM/DD/YYYY):</label><br>
-        <input type="text" name="date" required><br><br>
+<h1>GlucoTracker - Edit Password</h1>
 
-        <label>Glucose Level:</label><br>
-        <input type="number" name="glucose" required><br><br>
+<form method="post" action="forgotPassword">
+    Password: <input type="password" name="password">
+</form>
 
-        <label>Carbs Consumed:</label><br>
-        <input type="number" name="carbs" required><br><br>
+<a href="dashboard.jsp" class="back">&larr; Back to Dashboard</a>
 
-        <label>Insulin Units Taken:</label><br>
-        <input type="number" name="units" required><br><br>
-
-        <input type="submit" value="Submit Data">
-    </form>
-    <br>
-    <a href="dashboard.jsp">Back to Dashboard</a>
+<div class="footer">
+    Created by Daniel Soorani, Griffin Ramsey, Hunter Priest, Naimul Naim, Rachel Dolfi, and Abanoub Salam
+</div>
 </body>
 </html>

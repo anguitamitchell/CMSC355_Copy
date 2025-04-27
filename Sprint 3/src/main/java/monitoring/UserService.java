@@ -36,6 +36,20 @@ public class UserService {
         return false;
     }
 
+    public void passwordUpdate(String username, String password){
+        if(credentials.containsKey(username)){
+            Account updated = userAccounts.get(username);
+            updated.setPassword(password);
+            credentials.remove(username);
+            userAccounts.remove(username);
+            sessionStatus.remove(username);
+            if(register(username, password, updated)){
+                return;
+            }
+        }
+        return;
+    }
+
     public String getAccountData(String username, String data){
         Account user = userAccounts.get(username);
         String accData = "error";

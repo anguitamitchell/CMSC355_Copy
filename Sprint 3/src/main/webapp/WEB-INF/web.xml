@@ -14,6 +14,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>ForgotPasswordServlet</servlet-name>
+        <servlet-class>monitoring.servlet.ForgotPasswordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ForgotPasswordServlet</servlet-name>
+        <url-pattern>/forgotPassword</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>monitoring.servlet.RegisterServlet</servlet-class>
     </servlet>

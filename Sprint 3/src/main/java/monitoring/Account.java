@@ -39,6 +39,11 @@ public class Account {
         return password;
     }
 
+    public void setPassword(String newPass){
+        this.password = newPass;
+        return;
+    }
+
     public String getUserType() {
         return userType;
     }

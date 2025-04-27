@@ -15,4 +15,5 @@ monitoring\UserService$1.class
 monitoring\servlet\ViewDataServlet$1.class
 monitoring\Entry.class
 monitoring\servlet\InputDataServlet$1.class
+monitoring\servlet\ForgotPasswordServlet.class
 monitoring\servlet\InputDataServlet.class

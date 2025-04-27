@@ -62,6 +62,9 @@
         <form action="inputData">
             <button type="submit">Input Carb & Glucose Levels</button>
         </form>
+        <form action="forgotPassword" method="post">
+            <button type="submit">Change Password</button>
+        </form>
         <form action="login.jsp">
             <button type="submit">Logout</button>
         </form>
