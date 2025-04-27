@@ -13,6 +13,7 @@ import {
   Typography,
   Button,
   Divider,
+  Container,
 } from '@mui/material';
 import {
   Menu as MenuIcon,
@@ -22,7 +23,7 @@ import {
   Person as PersonIcon,
   ExitToApp as LogoutIcon,
 } from '@mui/icons-material';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
 const drawerWidth = 240;
@@ -53,7 +54,7 @@ const Layout = ({ children }) => {
     <div>
       <Toolbar>
         <Typography variant="h6" noWrap component="div">
-          MedTracker
+          PharmaSenseAI
         </Typography>
       </Toolbar>
       <Divider />

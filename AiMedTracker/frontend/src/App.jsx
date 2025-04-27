@@ -5,11 +5,13 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // Components
-import Layout from './components/layout/Layout';
-import Login from './components/auth/Login';
-import MedicationLog from './components/medication/MedicationLog';
-import InteractionAlerts from './components/medication/InteractionAlerts';
-import { AuthProvider, useAuth } from './context/AuthContext';
+import Layout from './components/layout/Layout.jsx';
+import Login from './components/auth/Login.jsx';
+import SignUp from './components/auth/SignUp.jsx';
+import Profile from './components/auth/Profile.jsx';
+import MedicationLog from './components/medication/MedicationLog.jsx';
+import InteractionAlerts from './components/medication/InteractionAlerts.jsx';
+import { AuthProvider, useAuth } from './context/AuthContext.jsx';
 
 // Create a theme instance
 const theme = createTheme({
@@ -35,7 +37,11 @@ function App() {
         <Router>
           <ToastContainer position="top-right" />
           <Routes>
+            {/* Public Routes */}
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            
+            {/* Protected Routes */}
             <Route
               path="/"
               element={
@@ -81,7 +87,7 @@ function App() {
               element={
                 <PrivateRoute>
                   <Layout>
-                    <div>Profile Page (Coming Soon)</div>
+                    <Profile />
                   </Layout>
                 </PrivateRoute>
               }

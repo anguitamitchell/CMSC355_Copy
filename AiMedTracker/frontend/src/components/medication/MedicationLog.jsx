@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Container,
@@ -16,33 +16,41 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
+  CircularProgress,
 } from '@mui/material';
 import { Delete as DeleteIcon, Edit as EditIcon } from '@mui/icons-material';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { toast } from 'react-toastify';
+import { checkMedication } from '../../api';
+
+const STORAGE_KEY = 'medications';
 
 const validationSchema = yup.object({
   medicationName: yup.string().required('Medication name is required'),
-  dosage: yup.string().required('Dosage is required'),
-  frequency: yup.string().required('Frequency is required'),
-  startDate: yup.date().required('Start date is required'),
 });
 
 const MedicationLog = () => {
-  const [medications, setMedications] = useState([]);
+  const [medications, setMedications] = useState(() => {
+    // Initialize from localStorage
+    const savedMedications = localStorage.getItem(STORAGE_KEY);
+    return savedMedications ? JSON.parse(savedMedications) : [];
+  });
   const [openDialog, setOpenDialog] = useState(false);
   const [editingMedication, setEditingMedication] = useState(null);
+  const [isChecking, setIsChecking] = useState(false);
+
+  // Save to localStorage whenever medications change
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(medications));
+  }, [medications]);
 
   const formik = useFormik({
     initialValues: {
       medicationName: '',
-      dosage: '',
-      frequency: '',
-      startDate: '',
     },
     validationSchema: validationSchema,
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: async (values, { resetForm }) => {
       if (editingMedication !== null) {
         // Update existing medication
         const updatedMedications = medications.map((med) =>
@@ -50,17 +58,50 @@ const MedicationLog = () => {
         );
         setMedications(updatedMedications);
         toast.success('Medication updated successfully!');
+        handleCloseDialog();
+        resetForm();
       } else {
-        // Add new medication
-        const newMedication = {
-          ...values,
-          id: Date.now(),
-        };
-        setMedications([...medications, newMedication]);
-        toast.success('Medication added successfully!');
+        // Check for duplicate medication
+        const isDuplicate = medications.some(
+          med => med.medicationName.toLowerCase() === values.medicationName.toLowerCase()
+        );
+        
+        if (isDuplicate) {
+          toast.error('This medication is already in your list');
+          return;
+        }
+
+        // Check if medication exists in FDA database
+        setIsChecking(true);
+        try {
+          console.log('Submitting medication:', values.medicationName);
+          const response = await checkMedication(values.medicationName);
+          console.log('Received response:', response);
+          
+          if (response.success) {
+            if (response.exists) {
+              // Add new medication
+              const newMedication = {
+                ...values,
+                id: Date.now(),
+              };
+              setMedications([...medications, newMedication]);
+              toast.success('Medication added successfully!');
+              handleCloseDialog();
+              resetForm();
+            } else {
+              toast.error(response.message || 'Medication not found in FDA database');
+            }
+          } else {
+            toast.error(response.error || 'Failed to check medication');
+          }
+        } catch (err) {
+          console.error('Error in form submission:', err);
+          toast.error(err.message || 'An error occurred while checking the medication');
+        } finally {
+          setIsChecking(false);
+        }
       }
-      handleCloseDialog();
-      resetForm();
     },
   });
 
@@ -83,7 +124,7 @@ const MedicationLog = () => {
 
   const handleDeleteMedication = (id) => {
     setMedications(medications.filter((med) => med.id !== id));
-    toast.success('Medication deleted successfully!');
+    
   };
 
   return (
@@ -108,7 +149,6 @@ const MedicationLog = () => {
               <ListItem key={medication.id} divider>
                 <ListItemText
                   primary={medication.medicationName}
-                  secondary={`Dosage: ${medication.dosage} | Frequency: ${medication.frequency} | Start Date: ${new Date(medication.startDate).toLocaleDateString()}`}
                 />
                 <ListItemSecondaryAction>
                   <IconButton
@@ -149,54 +189,24 @@ const MedicationLog = () => {
                     onChange={formik.handleChange}
                     error={formik.touched.medicationName && Boolean(formik.errors.medicationName)}
                     helperText={formik.touched.medicationName && formik.errors.medicationName}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    fullWidth
-                    id="dosage"
-                    name="dosage"
-                    label="Dosage"
-                    value={formik.values.dosage}
-                    onChange={formik.handleChange}
-                    error={formik.touched.dosage && Boolean(formik.errors.dosage)}
-                    helperText={formik.touched.dosage && formik.errors.dosage}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    fullWidth
-                    id="frequency"
-                    name="frequency"
-                    label="Frequency"
-                    value={formik.values.frequency}
-                    onChange={formik.handleChange}
-                    error={formik.touched.frequency && Boolean(formik.errors.frequency)}
-                    helperText={formik.touched.frequency && formik.errors.frequency}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    fullWidth
-                    id="startDate"
-                    name="startDate"
-                    label="Start Date"
-                    type="date"
-                    value={formik.values.startDate}
-                    onChange={formik.handleChange}
-                    error={formik.touched.startDate && Boolean(formik.errors.startDate)}
-                    helperText={formik.touched.startDate && formik.errors.startDate}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
+                    disabled={isChecking}
                   />
                 </Grid>
               </Grid>
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleCloseDialog}>Cancel</Button>
-              <Button type="submit" variant="contained" color="primary">
-                {editingMedication ? 'Update' : 'Add'}
+              <Button onClick={handleCloseDialog} disabled={isChecking}>Cancel</Button>
+              <Button 
+                type="submit" 
+                variant="contained" 
+                color="primary"
+                disabled={isChecking}
+              >
+                {isChecking ? (
+                  <CircularProgress size={24} color="inherit" />
+                ) : (
+                  editingMedication ? 'Update' : 'Add'
+                )}
               </Button>
             </DialogActions>
           </form>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Container,
@@ -10,31 +10,65 @@ import {
   ListItemText,
   Chip,
   Alert,
+  CircularProgress,
 } from '@mui/material';
 import WarningIcon from '@mui/icons-material/Warning';
 import InfoIcon from '@mui/icons-material/Info';
+import { checkInteraction } from '../../api';
+import ReactMarkdown from 'react-markdown';
 
-const InteractionAlerts = ({ medications }) => {
-  // This is a mock function - in a real app, this would call an AI service
-  const checkInteractions = (medications) => {
-    // Mock interactions for demonstration
-    return [
-      {
-        id: 1,
-        severity: 'high',
-        medications: ['Medication A', 'Medication B'],
-        description: 'Potential severe interaction between these medications. Consult your doctor immediately.',
-      },
-      {
-        id: 2,
-        severity: 'medium',
-        medications: ['Medication C', 'Medication D'],
-        description: 'Moderate interaction detected. Monitor for side effects.',
-      },
-    ];
-  };
+const InteractionAlerts = () => {
+  const [interactions, setInteractions] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const interactions = checkInteractions(medications);
+  useEffect(() => {
+    const analyzeInteractions = async () => {
+      const savedMedications = localStorage.getItem('medications');
+      if (!savedMedications) {
+        setError('No medications found. Please add medications first.');
+        return;
+      }
+
+      const medications = JSON.parse(savedMedications);
+      if (medications.length < 2) {
+        setError('Please add at least two medications to analyze interactions.');
+        return;
+      }
+
+      setLoading(true);
+      setError(null);
+      const newInteractions = [];
+
+      // Analyze each pair of medications
+      for (let i = 0; i < medications.length; i++) {
+        for (let j = i + 1; j < medications.length; j++) {
+          try {
+            const response = await checkInteraction(
+              medications[i].medicationName,
+              medications[j].medicationName
+            );
+            
+            if (response.success && response.analysis) {
+              newInteractions.push({
+                id: `${i}-${j}`,
+                severity: 'high',
+                medications: [medications[i].medicationName, medications[j].medicationName],
+                description: response.analysis,
+              });
+            }
+          } catch (err) {
+            console.error('Error checking interaction:', err);
+          }
+        }
+      }
+
+      setInteractions(newInteractions);
+      setLoading(false);
+    };
+
+    analyzeInteractions();
+  }, []);
 
   const getSeverityColor = (severity) => {
     switch (severity) {
@@ -49,6 +83,16 @@ const InteractionAlerts = ({ medications }) => {
     }
   };
 
+  if (loading) {
+    return (
+      <Container maxWidth="md">
+        <Box sx={{ mt: 4, mb: 4, display: 'flex', justifyContent: 'center' }}>
+          <CircularProgress />
+        </Box>
+      </Container>
+    );
+  }
+
   return (
     <Container maxWidth="md">
       <Box sx={{ mt: 4, mb: 4 }}>
@@ -56,7 +100,13 @@ const InteractionAlerts = ({ medications }) => {
           Medication Interactions
         </Typography>
 
-        {interactions.length === 0 ? (
+        {error && (
+          <Alert severity="error" sx={{ mt: 2 }}>
+            {error}
+          </Alert>
+        )}
+
+        {interactions.length === 0 && !error ? (
           <Alert severity="success" sx={{ mt: 2 }}>
             No medication interactions detected.
           </Alert>
@@ -103,8 +153,11 @@ const InteractionAlerts = ({ medications }) => {
                           component="span"
                           variant="body2"
                           color="text.secondary"
+                          sx={{ whiteSpace: 'pre-line' }}
                         >
-                          {interaction.description}
+                          <div className="markdown-content">
+                            <ReactMarkdown>{interaction.description}</ReactMarkdown>
+                          </div>
                         </Typography>
                       </>
                     }
