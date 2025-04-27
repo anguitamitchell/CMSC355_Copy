@@ -11,9 +11,8 @@ import monitoring.Entry;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.*;
-import java.util.stream.Collectors;
 
-public class ViewDataServlet extends HttpServlet {
+public class AdminDataServlet extends HttpServlet {
 
     private static final String ENTRIES_FILE = "src/main/resources/entries.json";
 
@@ -21,7 +20,7 @@ public class ViewDataServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String username = (String) request.getSession().getAttribute("username");
-        System.out.println("ViewDataServlet - Username from session: " + username);
+        System.out.println("AdminDataServlet: " + username);
 
         if (username == null) {
             request.getSession().invalidate();
@@ -30,11 +29,8 @@ public class ViewDataServlet extends HttpServlet {
         }
 
         List<Entry> allEntries = loadEntries();
-        List<Entry> userEntries = allEntries.stream()
-            .filter(e -> e.getUsername() != null && e.getUsername().equals(username))
-            .collect(Collectors.toList());
-        request.setAttribute("entries", userEntries);
-        request.getRequestDispatcher("viewData.jsp").forward(request, response);
+        request.setAttribute("entries", allEntries);
+        request.getRequestDispatcher("adminData.jsp").forward(request, response);
     }
 
     private List<Entry> loadEntries() {

@@ -9,6 +9,7 @@ public class DashboardServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
+        System.out.println("ping");
         if (session == null || session.getAttribute("username") == null) {
             request.getSession().invalidate();
             response.sendRedirect("login.jsp");

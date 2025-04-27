@@ -32,6 +32,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>AdminDataServlet</servlet-name>
+        <servlet-class>monitoring.servlet.AdminDataServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminDataServlet</servlet-name>
+        <url-pattern>/adminData</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
         <servlet-name>ViewDataServlet</servlet-name>
         <servlet-class>monitoring.servlet.ViewDataServlet</servlet-class>
     </servlet>

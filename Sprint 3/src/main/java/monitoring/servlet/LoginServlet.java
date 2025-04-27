@@ -22,7 +22,7 @@ public class LoginServlet extends HttpServlet {
             request.getSession().setAttribute("username", username);
             request.getSession().setAttribute("userType", userService.getAccountData(username, "userType"));
             if (admin.equals((String) request.getSession().getAttribute("userType"))) {
-                response.sendRedirect("adminData.jsp");
+                response.sendRedirect("adminData");
             } else {
                 response.sendRedirect("dashboard.jsp");
             }
@@ -32,4 +32,7 @@ public class LoginServlet extends HttpServlet {
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
+
+    
+
 }
