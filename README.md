@@ -27,10 +27,10 @@ Ensure you have your own openrouter api key
 
 Run from the terminal
 - install nodejs npm 
-- pip3 install -r requirements.txt
 - cd AssignmentRepoDemo (from YashSonar20's GitHub)
 - cd AiMedTracker 
 - cd backend 
+- pip3 install -r requirements.txt
 - npm run dev
 - cd ..
 - cd frontend
