@@ -1,0 +1,11 @@
+{
+  "users": {
+    "u1": {
+      "email": "pat@example.com",
+      "password": "pass123",
+      "type": "patient",
+      "name": "Thomas Yang",
+      "medications": []
+    }
+  }
+}

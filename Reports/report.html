@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Yash Sonar">
+<meta name="author" content="Leiliani Clark">
+<meta name="author" content="Trinitey Tran">
+<meta name="author" content="Thomas Yang">
+<meta name="author" content="Ayush Purankar">
+<meta name="dcterms.date" content="2025-03-01">
+
+<title>AI Applied to Requirements Definition</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="report_files/libs/clipboard/clipboard.min.js"></script>
+<script src="report_files/libs/quarto-html/quarto.js"></script>
+<script src="report_files/libs/quarto-html/popper.min.js"></script>
+<script src="report_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="report_files/libs/quarto-html/anchor.min.js"></script>
+<link href="report_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="report_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="report_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="report_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="report_files/libs/bootstrap/bootstrap-973236bd072d72a04ee9cd82dcc9cb29.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">AI Applied to Requirements Definition</h1>
+            <p class="subtitle lead">An exploration of how AI can be used to define requirements within the software development process.</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Authors</div>
+      <div class="quarto-title-meta-contents">
+               <p>Yash Sonar <a href="mailto:sonaryd@vcu.edu" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+               <p>Leiliani Clark <a href="mailto:clarkl3@vcu.edu" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+               <p>Trinitey Tran <a href="mailto:trant14@vcu.edu" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+               <p>Thomas Yang <a href="mailto:yangtj2@vcu.edu" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+               <p>Ayush Purankar <a href="mailto:purankaram@vcu.edu" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 1, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="table-of-contents" class="level1">
+<h1>Table of Contents</h1>
+<ol type="1">
+<li>Introduction</li>
+<li>State-of-the-Art Research AI Tools in Requirements Definition</li>
+<li>Comparing AI Tools: Strengths &amp; Weaknesses</li>
+<li>Case Study: Using AI for Requirements Analysis</li>
+<li>Emerging Tools</li>
+</ol>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>In software engineering, a requirement is a condition or capability that a system must meet to satisfy a user’s need or business objective. Requirements are the foundation of a successful software project because they ensure that the right product is built from the beginning and improve communication and collaboration among team members.</p>
+<p>The use of Artificial Intelligence (AI) in the software development process is transforming how requirements are defined, analyzed, and managed. Traditionally, defining requirements has been a labor-intensive and error-prone task requiring continuous stakeholder engagement, documentation review, and validation. AI technologies, such as Natural Language Processing (NLP), Machine Learning (ML), and Predictive Analytics, can automate and enhance these processes, ensuring greater accuracy, efficiency, and adaptability.</p>
+<p>By leveraging AI, organizations can improve the quality of requirements, reduce ambiguities, and ensure alignment with evolving business needs. Furthermore, AI-driven tools enable automated traceability, predictive requirement prioritization, and the ability to manage changing requirements dynamically.</p>
+<p>This report will explore the latest AI tools used in requirement definition, compare three prominent tools, and discuss emerging AI technologies that promise to further revolutionize the requirement definition process.</p>
+<p>Reference: <a href="https://doi.org/10.1186/s42467-020-00005-4" class="uri">https://doi.org/10.1186/s42467-020-00005-4</a> (&amp; lecture notes)</p>
+</section>
+<section id="state-of-the-art-research-ai-tools-in-requirements-definition" class="level2">
+<h2 class="anchored" data-anchor-id="state-of-the-art-research-ai-tools-in-requirements-definition">State-of-the-Art Research AI Tools in Requirements Definition</h2>
+<p>Several state-of-the-art AI tools and technologies have been developed to assist in defining and managing software requirements. These tools focus on various aspects of the requirement lifecycle, from gathering and classifying requirements to ensuring consistency and traceability. Here are some of the leading AI tools utilized in requirements definition:</p>
+<section id="aqua" class="level3">
+<h3 class="anchored" data-anchor-id="aqua">aqua</h3>
+<p>Aqua (Application Quality Analyzer) is an advanced tool designed to support software development by enhancing requirement management and quality assurance. It uses AI to analyze requirements for completeness, consistency, and ambiguity. Aqua assists in tracking changes, maintaining version control, and providing automated reports. It’s particularly useful in highly regulated industries where precision and compliance are critical.</p>
+<p>Aqua Website: <a href="https://aqua-cloud.io/ai-in-aqua/" class="uri">https://aqua-cloud.io/ai-in-aqua/</a></p>
+</section>
+<section id="visure-solutions" class="level3">
+<h3 class="anchored" data-anchor-id="visure-solutions">Visure Solutions</h3>
+<p>Visure Solutions offers a comprehensive requirements management platform designed for industries requiring high compliance, such as healthcare. Its AI capabilities help automate requirements traceability, identify inconsistencies, and ensure alignment with industry standards. The platform integrates with other development tools, allowing seamless collaboration across the software lifecycle.</p>
+<p>Visure Website: <a href="https://visuresolutions.com/" class="uri">https://visuresolutions.com/</a></p>
+</section>
+<section id="ibm-engineering-requirements-quality-assistant-rqa" class="level3">
+<h3 class="anchored" data-anchor-id="ibm-engineering-requirements-quality-assistant-rqa">IBM Engineering Requirements Quality Assistant (RQA)</h3>
+<p>IBM Engineering RQA leverages AI and natural language processing (NLP) to assess the quality of software requirements. It identifies potential issues like ambiguities, inconsistencies, and missing information. RQA also provides real-time suggestions for improving requirement clarity and completeness. It integrates with IBM’s broader engineering suite, supporting large-scale, mission-critical systems.</p>
+<p>IBM Webstie: <a href="https://www.ibm.com/docs/en/erqa?topic=engineering-requirements-quality-assistant" class="uri">https://www.ibm.com/docs/en/erqa?topic=engineering-requirements-quality-assistant</a></p>
+</section>
+<section id="notion" class="level3">
+<h3 class="anchored" data-anchor-id="notion">Notion</h3>
+<p>Notion is a versatile, AI-powered workspace that combines note-taking, document management, project tracking, and knowledge sharing. It is widely used for capturing and organizing software requirements through collaborative documentation. Notion’s AI features can summarize requirements, generate task lists, and ensure traceability. Its flexible database structure helps manage complex requirement lifecycles efficiently.</p>
+<p>Notion Website: <a href="https://www.notion.com/" class="uri">https://www.notion.com/</a></p>
+</section>
+</section>
+<section id="comparing-ai-tools-strengths-weaknesses" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-ai-tools-strengths-weaknesses">Comparing AI Tools: Strengths &amp; Weaknesses</h2>
+<section id="aqua-1" class="level3">
+<h3 class="anchored" data-anchor-id="aqua-1">aqua</h3>
+<ul>
+<li>Strengths:
+<ul>
+<li>AI-Powered Requirement Analysis: Uses artificial intelligence to analyze requirements for ambiguity, completeness, duplications, and consistency.
+<ul>
+<li>Can even create requirements using speech to text!</li>
+</ul></li>
+<li>Change Management: Tracks changes to requirements and ensures proper version control.</li>
+<li>Automated Quality Checks: Provides testing features on requirement quality, reducing human error.</li>
+<li>Compliance Support: Helps maintain compliance with industry standards by ensuring high-quality, well-documented requirements.</li>
+</ul></li>
+<li>Weaknesses:
+<ul>
+<li>Complex Implementation: Requires time and effort to configure and adapt to specific workflows.</li>
+<li>Limited Native Integrations: Aqua primarily focuses on large-scale test automation and lacks native integrations with popular issue management tools.</li>
+</ul></li>
+</ul>
+</section>
+<section id="visure-solutions-1" class="level3">
+<h3 class="anchored" data-anchor-id="visure-solutions-1">Visure Solutions</h3>
+<ul>
+<li>Strengths:
+<ul>
+<li>Comprehensive Traceability: Offers end-to-end traceability across the entire requirement lifecycle, ensuring compliance with industry standards.</li>
+<li>Custom Workflows: Supports complex workflows with customization options tailored to different industries.</li>
+<li>AI-Powered Consistency Checks: Automates the detection of inconsistencies and missing information.</li>
+<li>Regulatory Compliance: Ideal for industries requiring strict regulatory adherence (aerospace, automotive, medical devices).</li>
+</ul></li>
+<li>Weaknesses:
+<ul>
+<li>Complex Setup: Requires a significant learning curve and time investment to implement and configure.</li>
+<li>Cost: Higher pricing makes it less accessible for smaller teams or projects.</li>
+<li>Limited Collaboration Tools: While powerful for requirement tracking, it lacks advanced real-time collaboration features found in general-purpose platforms like Notion.</li>
+</ul></li>
+</ul>
+</section>
+<section id="ibm-engineering-requirements-quality-assistant-rqa-1" class="level3">
+<h3 class="anchored" data-anchor-id="ibm-engineering-requirements-quality-assistant-rqa-1">IBM Engineering Requirements Quality Assistant (RQA)</h3>
+<ul>
+<li>Strengths:
+<ul>
+<li>Advanced AI Analysis: Uses natural language processing (NLP) to evaluate the quality of requirements for clarity, ambiguity, and completeness.</li>
+<li>Integration with IBM Ecosystem: Seamlessly connects with IBM’s broader engineering tools, making it ideal for large-scale systems.</li>
+<li>Automated Quality Checks: Provides real-time feedback to improve requirement quality and ensure consistency.</li>
+<li>Scalability: Designed to handle complex and large-scale projects across multiple teams and industries.</li>
+</ul></li>
+<li>Weaknesses:
+<ul>
+<li>Steep Learning Curve: Requires specialized training to effectively utilize advanced AI capabilities.</li>
+<li>High Cost: Premium pricing model makes it suitable primarily for large enterprises rather than small organizations.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="case-study-enhancing-requirements-analysis-in-software-development-with-generative-ai" class="level2">
+<h2 class="anchored" data-anchor-id="case-study-enhancing-requirements-analysis-in-software-development-with-generative-ai">Case Study: Enhancing Requirements Analysis in Software Development with Generative AI</h2>
+<p>A study examining the use of generative AI in Agile development focused on three different user stories. The results demonstrated significant improvements in the requirements analysis process:</p>
+<ul>
+<li>Increased Efficiency: AI assistance reduced analysis time by approximately 20%, allowing teams to work more quickly and effectively.</li>
+<li>Improved Team Collaboration: The AI streamlined workflows, enhancing team coordination and improving overall project flow.</li>
+<li>Higher-Quality Acceptance Criteria: Once the AI was provided with well-defined context, it generated superior acceptance criteria and scenarios—outperforming the quality assurance team responsible for supervising the AI.</li>
+<li>Fewer Bugs: The AI’s ability to identify and account for edge cases led to a 10% reduction in bugs, improving software quality and reducing post-release issues.</li>
+</ul>
+<p>This case study highlights how generative AI can enhance both the speed and accuracy of the requirements analysis process, leading to more efficient development cycles and higher-quality software.</p>
+<p>Case Study: <a href="https://www.thoughtworks.com/en-us/insights/blog/generative-ai/using-ai-requirements-analysis-case-study" class="uri">https://www.thoughtworks.com/en-us/insights/blog/generative-ai/using-ai-requirements-analysis-case-study</a></p>
+</section>
+<section id="emerging-tools" class="level2">
+<h2 class="anchored" data-anchor-id="emerging-tools">Emerging Tools</h2>
+<p>Tools such as Self healing software are used to minimize reactive fixes in the workplace due to being able to modify requirements based on “real-time system performance” and anomalies that are detected in the system. Tools such as Self healing software are used to minimize reactive fixes in the workplace due to being able to modify requirements based on “real-time system performance” and anomalies that are detected in the system.</p>
+<p>Another example of an AI tool that would be beneficial in the workplace is NLP(Natural language processing). The tool is designed to increase efficiency in the workplace by emphasizing and refining requirements from unstructured text such as emails, user feedback or meeting notes. Ideally, it would identify ambiguities, redundancies, and missing elements in requirement documents.</p>
+<p>IBM’s “Engineering Requirements Management DOORS (Dynamic Object-Oriented Requirements System)” is another AI-powered tool that can significantly enhance the requirements management process. DOORS uses AI to “improve the quality of engineering requirements as they are written, while also optimizing communication and collaboration among teams and stakeholders (<a href="https://www.ibm.com/products/requirements-management" class="uri">https://www.ibm.com/products/requirements-management</a>).”</p>
+<p>There are a number of general tools, such as GPT-4, conversational AI tools that systems can integrate for a user to interact with on a home page, self-healing frameworks as mentioned before, and AI-Augmented testing for requirement validation. GPT-4 can reduce the time and effort required to draft and review requirements, conversational AI tools can let users interact with AI systems through integrated home page systems, creating a better environment for users to interact with a system, and AI-augmented testing tools can use MLA(Machine Learning Algorithms) to simulate different developmental scenarios to test requirement checks before coding begins, which could cut down development time by removing human checks for a step of a process. (<a href="https://openai.com/index/gpt-4/" class="uri">https://openai.com/index/gpt-4/</a>)</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
