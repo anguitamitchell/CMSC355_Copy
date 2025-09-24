@@ -1,5 +1,5 @@
 My groupmembers are:
-- Chris Jorss
+- Chris Jorsss
 - Mitchell Anguita
 - Wyatt Byrd  
 - Kenloy Marseille
