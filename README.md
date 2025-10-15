@@ -10,3 +10,4 @@ My groupmembers are:
     •    Requirement 1: Allow users to enter medications with dosage, time, and frequency.
     •    Requirement 2: Send reminders/alerts (push notification, email, or simple console alert).
     •    Requirement 3: Track whether the medication was marked as “taken” and generate a simple adherence report.
+Test
