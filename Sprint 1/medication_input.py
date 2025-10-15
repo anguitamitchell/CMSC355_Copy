@@ -1,14 +1,16 @@
 import re
-from datetime import datetime
 import json
 import os
+from datetime import datetime
+import tkinter as tk
+from tkinter import messagebox
 
 # ---------- Data Model ----------
 class Medication:
     def __init__(self, name, dosage, frequency, end_date):
         self.name = name
         self.dosage = dosage
-        self.frequency = frequency  # in hours
+        self.frequency = frequency
         self.end_date = end_date
         self.created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -20,48 +22,6 @@ class Medication:
             "end_date": self.end_date,
             "created_at": self.created_at
         }
-
-# ---------- Core Functionality ----------
-def input_new_medication():
-    """Handles user input for a new medication record with dosage validation"""
-    print("\n--- Add a New Medication ---")
-
-    # Medication name
-    name = input("Enter medication name: ").strip()
-
-    # Dosage validation: must be number followed by 'mg'
-    dosage_pattern = r"^\d+\s?mg$"
-    while True:
-        dosage = input("Enter dosage (e.g., '10 mg'): ").strip().lower()
-        if re.match(dosage_pattern, dosage):
-            break
-        else:
-            print("Invalid format! Dosage must be a number followed by 'mg' (e.g., 10 mg)")
-
-    # Frequency validation
-    while True:
-        try:
-            frequency = int(input("Enter frequency (hours between doses, 1–24): "))
-            if 1 <= frequency <= 24:
-                break
-            else:
-                print("Frequency must be between 1 and 24 hours.")
-        except ValueError:
-            print("Please enter a valid number for frequency.")
-
-    # End date
-    end_date = input("Enter end date (YYYY-MM-DD): ").strip()
-
-    # Confirm or cancel
-    confirm = input("Confirm adding this medication? (Y/N): ").strip().lower()
-    if confirm != "y":
-        print("Medication entry canceled.")
-        return None
-
-    # Create and save the record
-    new_med = Medication(name, dosage, frequency, end_date)
-    save_medication(new_med)
-    print(f"Medication '{new_med.name}' successfully added!\n")
 
 # ---------- File Storage ----------
 def save_medication(medication):
@@ -82,8 +42,63 @@ def save_medication(medication):
     with open(filename, "w") as file:
         json.dump(data, file, indent=4)
 
-    print(f"Saved to {filename}")
+# ---------- GUI ----------
+def submit_medication():
+    name = entry_name.get().strip()
+    dosage = entry_dosage.get().strip().lower()
+    frequency = entry_frequency.get().strip()
+    end_date = entry_end_date.get().strip()
 
-# ---------- Main ----------
-if __name__ == "__main__":
-    input_new_medication()
+    # Validate dosage
+    if not re.match(r"^\d+\s?mg$", dosage):
+        messagebox.showerror("Error", "Dosage must be a number followed by 'mg' (e.g., 10 mg)")
+        return
+
+    # Validate frequency
+    try:
+        frequency = int(frequency)
+        if not (1 <= frequency <= 24):
+            raise ValueError
+    except ValueError:
+        messagebox.showerror("Error", "Frequency must be an integer between 1 and 24")
+        return
+
+    # Optionally, you could validate date format here
+
+    # Create medication and save
+    new_med = Medication(name, dosage, frequency, end_date)
+    save_medication(new_med)
+    messagebox.showinfo("Success", f"Medication '{name}' added successfully!")
+
+    # Clear fields
+    entry_name.delete(0, tk.END)
+    entry_dosage.delete(0, tk.END)
+    entry_frequency.delete(0, tk.END)
+    entry_end_date.delete(0, tk.END)
+
+# ---------- Main Window ----------
+root = tk.Tk()
+root.title("Add New Medication")
+root.geometry("400x300")
+
+# Labels
+tk.Label(root, text="Medication Name:").pack(pady=(20,0))
+entry_name = tk.Entry(root, width=30)
+entry_name.pack()
+
+tk.Label(root, text="Dosage (e.g., 10 mg):").pack(pady=(10,0))
+entry_dosage = tk.Entry(root, width=30)
+entry_dosage.pack()
+
+tk.Label(root, text="Frequency (hours):").pack(pady=(10,0))
+entry_frequency = tk.Entry(root, width=30)
+entry_frequency.pack()
+
+tk.Label(root, text="End Date (YYYY-MM-DD):").pack(pady=(10,0))
+entry_end_date = tk.Entry(root, width=30)
+entry_end_date.pack()
+
+# Submit Button
+tk.Button(root, text="Add Medication", command=submit_medication).pack(pady=20)
+
+root.mainloop()
