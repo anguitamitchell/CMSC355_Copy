@@ -21,7 +21,7 @@ def load_data():
         except json.JSONDecodeError:
             return []
 
-# ----------- TEST CASES -----------
+#TEST CASES
 
 def test_TC01_success_add():
     """TC01: Successfully add a valid medication."""
@@ -34,7 +34,7 @@ def test_TC01_success_add():
 
     data = load_data()
     assert len(data) == 1 and data[0]["name"] == "Amoxicillin"
-    print("✅ TC01 Passed: Medication successfully added and saved.")
+    print("TC01 Passed: Medication successfully added and saved.")
 
 def test_TC02_remove_medication():
     """TC02: Remove medication with confirmation."""
@@ -49,22 +49,22 @@ def test_TC02_remove_medication():
 
     data = load_data()
     assert len(data) == 0
-    print("✅ TC02 Passed: Medication successfully removed.")
+    print("TC02 Passed: Medication successfully removed.")
 
 def test_TC03_invalid_dosage():
     """TC03: Detect invalid dosage input."""
     invalid_dosage = "five hundred mg"
     assert not re.match(r"^\d+\s?mg$", invalid_dosage)
-    print("✅ TC03 Passed: Invalid dosage correctly detected.")
+    print("TC03 Passed: Invalid dosage correctly detected.")
 
 def test_TC04_unapproved_medication():
     """TC04: Block medication not approved by doctor."""
     reset_data_file()
     unapproved = "UnknownDrug"
     assert unapproved not in medication_input.APPROVED_MEDICATIONS
-    print("✅ TC04 Passed: Medication without approval correctly rejected.")
+    print("TC04 Passed: Medication without approval correctly rejected.")
 
-# ----------- MAIN TEST RUNNER -----------
+#MAIN TEST RUNNER
 if __name__ == "__main__":
     print("\nRunning Functional Tests for medication_input.py...\n")
 
@@ -75,4 +75,4 @@ if __name__ == "__main__":
         test_TC04_unapproved_medication()
         print("\n🎉 All test cases passed successfully!\n")
     except AssertionError as e:
-        print("❌ Test failed:", e)
+        print(" Test failed:", e)
