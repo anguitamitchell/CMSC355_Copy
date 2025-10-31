@@ -5,7 +5,7 @@ from datetime import datetime
 import tkinter as tk
 from tkinter import messagebox
 
-# ---------- Simulated Doctor-Approved Database ----------
+#Simulated Doctor-Approved Database 
 APPROVED_MEDICATIONS = {
     "Amoxicillin": True,
     "Ibuprofen": True,
@@ -13,7 +13,7 @@ APPROVED_MEDICATIONS = {
     "Lisinopril": True,
 }
 
-# ---------- Data Model ----------
+#Data Model
 class Medication:
     def __init__(self, name, dosage, frequency, end_date):
         self.name = name
@@ -31,7 +31,7 @@ class Medication:
             "created_at": self.created_at
         }
 
-# ---------- File Storage ----------
+#File Storage
 def get_data_file():
     """
     Save medications in 'Sprint 1.json' located in the same directory as this file.
@@ -76,24 +76,24 @@ def remove_medication(name):
     else:
         messagebox.showinfo("Cancelled", "Removal cancelled.")
 
-# ---------- GUI ----------
+#GUI
 def submit_medication():
     name = entry_name.get().strip().capitalize()
     dosage = entry_dosage.get().strip().lower()
     frequency = entry_frequency.get().strip()
     end_date = entry_end_date.get().strip()
 
-    # ---------- TC04: Verify medication exists and has doctor approval ----------
+    #TC04: Verify medication exists and has doctor approval
     if name not in APPROVED_MEDICATIONS or not APPROVED_MEDICATIONS[name]:
         messagebox.showerror("Error", "Medication not found or waiting doctor approval")
         return
 
-    # ---------- TC03: Validate dosage ----------
+    #Validate dosage
     if not re.match(r"^\d+\s?mg$", dosage):
         messagebox.showerror("Error", "Invalid dosage, please input a valid format (Ex. 500mg)")
         return
 
-    # ---------- Validate frequency ----------
+    #Validate frequency
     try:
         frequency = int(frequency)
         if not (1 <= frequency <= 24):
@@ -102,7 +102,7 @@ def submit_medication():
         messagebox.showerror("Error", "Frequency must be an integer between 1 and 24")
         return
 
-    # ---------- TC01: Successfully add new medication ----------
+    #Successfully add new medication
     new_med = Medication(name, dosage, frequency, end_date)
     save_medication(new_med)
     messagebox.showinfo("Success", "Medication successfully added")
@@ -130,7 +130,7 @@ def open_remove_window():
     remove_entry.pack()
     tk.Button(remove_window, text="Confirm Removal", command=confirm_remove).pack(pady=10)
 
-# ---------- Main Window ----------
+#Main Window
 root = tk.Tk()
 root.title("Medication Management - Sprint 1")
 root.geometry("400x350")
