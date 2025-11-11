@@ -11,6 +11,7 @@ APPROVED_MEDICATIONS = {
     "Ibuprofen": True,
     "Metformin": True,
     "Lisinopril": True,
+    "Amlodipine": True,
 }
 
 #Data Model
