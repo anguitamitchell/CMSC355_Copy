@@ -1,0 +1,23 @@
+[
+    {
+        "medication_name": "Amoxicillin",
+        "dosage": "200mg",
+        "frequency": 8,
+        "next_reminder": "2025-11-14 17:54:17",
+        "active": true
+    },
+    {
+        "medication_name": "Ibuprofen",
+        "dosage": "100mg",
+        "frequency": 1,
+        "next_reminder": "2025-11-14 10:55:11",
+        "active": true
+    },
+    {
+        "medication_name": "Metformin",
+        "dosage": "300mg",
+        "frequency": 2,
+        "next_reminder": "2025-11-14 10:13:21",
+        "active": true
+    }
+]

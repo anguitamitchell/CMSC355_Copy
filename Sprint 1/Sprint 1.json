@@ -1,1 +1,23 @@
-[]
+[
+    {
+        "name": "Amoxicillin",
+        "dosage": "200mg",
+        "frequency": 8,
+        "end_date": "2025-11-15",
+        "created_at": "2025-11-14 09:45:49"
+    },
+    {
+        "name": "Ibuprofen",
+        "dosage": "100mg",
+        "frequency": 1,
+        "end_date": "2025-11-15",
+        "created_at": "2025-11-14 09:48:00"
+    },
+    {
+        "name": "Metformin",
+        "dosage": "300mg",
+        "frequency": 2,
+        "end_date": "2025-11-15",
+        "created_at": "2025-11-14 09:55:57"
+    }
+]
